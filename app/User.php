@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Spatie\Permission\Traits\HasRoles;
+//use App\Estudiantes;
 
 class User extends Authenticatable
 {
@@ -19,6 +20,7 @@ class User extends Authenticatable
         /*'name', 'email',*/ 'cedula', 'password',
     ];
 
+    protected $nombre;
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -27,4 +29,13 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /*public function Name(){
+        $cedula=Auth::users()->cedula;
+        $nombre = Estudiantes::where('cedula', '=', $cedula)->firstOrFail();
+        return $nombre;
+    }*/
+    public function getEstudiante(){
+        return $this->belongsTo('App\Estudiantes','cedula');
+    }
 }

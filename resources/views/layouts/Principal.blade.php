@@ -29,17 +29,33 @@ Licence URI: http://www.os-templates.com/template-terms
             </div>
             <nav id="mainav" class="fl_right">
                 <ul class="clear">
-                    <li class="active"><a href="index.html">Home</a></li>
-                    <li><a class="drop" href="#">Pages</a>
+
+                    <li class="active"><a href="{{ route('home')}}">Home</a></li>
+                    @guest
+                        <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
+                        <li><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></li>
+                    @else
+                    <li><a class="drop" href="#">
+                            @if(empty(Auth::user()->getEstudiante->cedula))
+                            {{ Auth::user()->cedula }}
+                                @else
+                                {{Auth::user()->getEstudiante->name}} {{Auth::user()->getEstudiante->lastname}}
+                                @endif
+                                <span class="caret"></span></a>
                         <ul>
-                            <li><a href="pages/gallery.html">Gallery</a></li>
-                            <li><a href="pages/full-width.html">Full Width</a></li>
+                            <li><a href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
+                            </li>
+                            <!--<li><a href="pages/full-width.html">Full Width</a></li>
                             <li><a href="pages/sidebar-left.html">Sidebar Left</a></li>
                             <li><a href="pages/sidebar-right.html">Sidebar Right</a></li>
-                            <li><a href="pages/basic-grid.html">Basic Grid</a></li>
+                            <li><a href="pages/basic-grid.html">Basic Grid</a></li>-->
                         </ul>
                     </li>
-                    <li><a class="drop" href="#">Dropdown</a>
+                    <!--<li><a class="drop" href="#">Dropdown</a>
                         <ul>
                             <li><a href="#">Level 2</a></li>
                             <li><a class="drop" href="#">Level 2 + Drop</a>
@@ -53,7 +69,8 @@ Licence URI: http://www.os-templates.com/template-terms
                         </ul>
                     </li>
                     <li><a href="#">Link Text</a></li>
-                    <li><a href="#">Link Text</a></li>
+                    <li><a href="#">Link Text</a></li>-->
+                    @endguest
                 </ul>
             </nav>
             <!-- ################################################################################################ -->
