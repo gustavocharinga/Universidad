@@ -35,13 +35,16 @@ Licence URI: http://www.os-templates.com/template-terms
                         <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
                         <li><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></li>
                     @else
-                    <li><a class="drop" href="#">
+                    <li><a href="#">
                             @if(empty(Auth::user()->getEstudiante->cedula))
                             {{ Auth::user()->cedula }}
                                 @else
                                 {{Auth::user()->getEstudiante->name}} {{Auth::user()->getEstudiante->lastname}}
                                 @endif
-                                <span class="caret"></span></a>
+                                <span class="caret"></span>
+                                <div class="fa fa-angle-down"></div>
+                        </a>
+
                         <ul>
                             <li><a href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
