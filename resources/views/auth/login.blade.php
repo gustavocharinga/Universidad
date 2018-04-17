@@ -12,9 +12,18 @@
                         @csrf
 
                         <div class="form-group row">
-                            <label for="email" class="col-sm-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
+                            <label for="cedula" class="col-sm-4 col-form-label text-md-right">{{__('Cedula')}}</label>
+                            <!--<label for="email" class="col-sm-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>-->
                             <div class="col-md-6">
+                                <input id="cedula" type="text" class="form-control{{ $errors->has('cedula') ? ' is-invalid' : '' }}" name="cedula" value="{{ old('cedula') }}" required autofocus>
+
+                                @if ($errors->has('cedula'))
+                                    <span class="invalid-feedback">
+                                        <strong>{{ $errors->first('cedula') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                            <!--<div class="col-md-6">
                                 <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
 
                                 @if ($errors->has('email'))
@@ -22,7 +31,7 @@
                                         <strong>{{ $errors->first('email') }}</strong>
                                     </span>
                                 @endif
-                            </div>
+                            </div>-->
                         </div>
 
                         <div class="form-group row">

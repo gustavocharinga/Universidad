@@ -51,8 +51,22 @@ class RegisterController extends Controller
         return Validator::make($data, [
             //'name' => 'required|string|max:255',
             //'email' => 'required|string|email|max:255|unique:users',
+            'cedula'=>'required|string|min:6|max:8|confirmed',
+            'cedula'=>'regex:/^[0-9]{6,8}$/',
             'password' => 'required|string|min:6|confirmed',
-        ]);
+        ],
+            [
+                'cedula.regex'=>'Cedula Invalida!'
+            ]);
+    }
+    // utilizando los mensajes con funcion $this=>messages()
+    public function messages()
+    {
+
+        return [
+            'cedula.regex' => 'Cedula Invalida!' // Always be this message...
+        ];
+
     }
 
     /**
@@ -66,6 +80,7 @@ class RegisterController extends Controller
         return User::create([
             //'name' => $data['name'],
             //'email' => $data['email'],
+            'cedula'=> $data['cedula'],
             'password' => Hash::make($data['password']),
         ]);
     }
