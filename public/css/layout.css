@@ -220,13 +220,18 @@ td{border-width:0 1px;}
 .faico li:last-child{margin-right:0;}
 .faico a{display:inline-block; width:36px; height:36px; line-height:36px; font-size:18px; text-align:center;}
 
-.faico a{color:#FFFFFF; background-color:#FF5723;}
+.faico a{color:#FFFFFF; /*background-color:#DA0004;*/}
 .faico a:hover{}
+
+.faicon-twitter{background-color:#00ACEE;}
+.faicon-facebook{background-color:#3B5998;}
+.faicon-instagram{background-color:#e95950;}
 
 .faicon-dribble:hover{background-color:#EA4C89;}
 .faicon-facebook:hover{background-color:#3B5998;}
 .faicon-google-plus:hover{background-color:#DB4A39;}
 .faicon-linkedin:hover{background-color:#0E76A8;}
+.faicon-instagram:hover{background-color:#e95950;}
 .faicon-twitter:hover{background-color:#00ACEE;}
 .faicon-vk:hover{background-color:#4E658E;}
 
@@ -249,7 +254,7 @@ input:focus, textarea:focus, *:required:focus{border-color:#FF5723;}
 .overlay{color:#CBCBCB; background-color:inherit;}
 .overlay::after{color:inherit; background-color:rgba(0,0,0,.55);}
 
-.btn, .btn.inverse:hover{color:#FFFFFF; background-color:#FF5723; border-color:#FF5723;}
+.btn, .btn.inverse:hover{color:#FFFFFF; background-color:#DA0004; border-color:#000000;}
 .btn:hover, .btn.inverse{color:inherit; background-color:transparent; border-color:inherit;}
 
 
@@ -257,10 +262,10 @@ input:focus, textarea:focus, *:required:focus{border-color:#FF5723;}
 .row1{color:#FFFFFF; background-color:rgba(255,255,255,.2);}
 .row2{color:#CBCBCB; background-color:#222222;}
 .row3{color:#474747; background-color:#FFFFFF;}
-.row4{color:#CBCBCB; background-color:#222222;}
-.row5, .row5 a{color:#CBCBCB; background-color:#222222;}
+.row4{color:#000000; background-color:#FFFFFF;}
+.row5, .row5 a{color:#000000; background-color:#FFFFFF;}
 
-.overlay .heading, .row2 .heading, .row4 .heading{color:#FFFFFF;}
+.overlay .heading, .row2 .heading, .row4 .heading{color:#000000;}
 
 /* Header */
 #header #logo a{color:inherit;}
@@ -276,7 +281,7 @@ input:focus, textarea:focus, *:required:focus{border-color:#FF5723;}
 
 
 /* Quick Links */
-.quicklinks{color:#FFFFFF; background-color:#FF5723;}
+.quicklinks{color:#FFFFFF; background-color:#DA0004;}
 .quicklinks a{color:inherit;}
 .quicklinks ul li::after{color:rgba(255,255,255,.3);}
 
@@ -297,7 +302,7 @@ input:focus, textarea:focus, *:required:focus{border-color:#FF5723;}
 .pagination a, .pagination strong{border-color:#D7D7D7;}
 .pagination .current *{color:#FFFFFF; background-color:#FF5723;}
 
-#backtotop{color:#FFFFFF; background-color:#FF5723;}
+#backtotop{color:#FFFFFF; background-color:#DA0004;}
 
 
 /* Tables + Comments */

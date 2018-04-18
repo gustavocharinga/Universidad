@@ -8,7 +8,8 @@ Licence URI: http://www.os-templates.com/template-terms
 -->
 <html>
 <head>
-    <title>Overerts</title>
+    <link rel="icon" href="{{asset('images/Knowledge.ico')}}" type="image/ico"/>
+    <title> Universidad Alejandro de Humboldt</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link href="{{ asset('css/layout.css') }}" rel="stylesheet" type="text/css" media="all">
@@ -25,7 +26,7 @@ Licence URI: http://www.os-templates.com/template-terms
         <header id="header" class="hoc clear">
             <!-- ################################################################################################ -->
             <div id="logo" class="fl_left">
-                <h1><a href="index.html">Overerts</a></h1>
+                <h1><a><!--<img height="10" src="{{-- asset('images/UAH_LOGO_.png') --}}"/>-->UAH</a></h1>
             </div>
             <nav id="mainav" class="fl_right">
                 <ul class="clear">
@@ -135,14 +136,14 @@ Licence URI: http://www.os-templates.com/template-terms
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
-<div class="wrapper row4">
+<!--<div class="wrapper row4">
 
     <main>
         @yield('content')
     </main>
     <section class="hoc container clear">
         <!-- ################################################################################################ -->
-        <div class="center btmspace-80">
+        <!--<div class="center btmspace-80">
             <h2 class="heading nospace">Vehicula donec dignissim</h2>
             <p class="nospace">Varius porta maecenas vestibulum efficitur elit eu lacinia massa</p>
         </div>
@@ -191,12 +192,9 @@ Licence URI: http://www.os-templates.com/template-terms
             </li>
         </ul>
         <!-- ################################################################################################ -->
-        <div class="clear"></div>
+        <!--<div class="clear"></div>-->
     </section>
-</div>
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
+<!--</div>-->
 <div class="wrapper row3">
     <main class="hoc container clear">
         <!-- main body -->
@@ -252,9 +250,6 @@ Licence URI: http://www.os-templates.com/template-terms
         <div class="clear"></div>
     </main>
 </div>
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
 <div class="wrapper bgded overlay" style="background-image:url('images/02.png');">
     <section class="hoc container clear">
         <!-- ################################################################################################ -->
@@ -303,9 +298,6 @@ Licence URI: http://www.os-templates.com/template-terms
         <!-- ################################################################################################ -->
     </section>
 </div>
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
 <div class="wrapper row4">
     <footer id="footer" class="hoc clear">
         <!-- ################################################################################################ -->
@@ -316,26 +308,28 @@ Licence URI: http://www.os-templates.com/template-terms
             <ul class="faico clear">
                 <li><a class="faicon-facebook" href="#"><i class="fa fa-facebook"></i></a></li>
                 <li><a class="faicon-twitter" href="#"><i class="fa fa-twitter"></i></a></li>
-                <li><a class="faicon-dribble" href="#"><i class="fa fa-dribbble"></i></a></li>
-                <li><a class="faicon-linkedin" href="#"><i class="fa fa-linkedin"></i></a></li>
-                <li><a class="faicon-google-plus" href="#"><i class="fa fa-google-plus"></i></a></li>
-                <li><a class="faicon-vk" href="#"><i class="fa fa-vk"></i></a></li>
+                <!--<li><a class="faicon-dribble" href="#"><i class="fa fa-dribbble"></i></a></li>-->
+                <!--<li><a class="faicon-linkedin" href="#"><i class="fa fa-linkedin"></i></a></li>-->
+                <li><a class="faicon-instagram" href="#"><i class="fa fa-instagram"></i></a></li>
+                <!--<li><a class="faicon-google-plus" href="#"><i class="fa fa-google-plus"></i></a></li>-->
+                <!--<li><a class="faicon-vk" href="#"><i class="fa fa-vk"></i></a></li>-->
             </ul>
         </div>
         <div class="one_third">
-            <h6 class="heading">luctus vestibulum magna</h6>
+            <h6 class="heading">Contactanos</h6>
             <ul class="nospace linklist contact">
                 <li><i class="fa fa-map-marker"></i>
                     <address>
-                        Street Name &amp; Number, Town, Postcode/Zip
+                        Sede Los Dos Caminos, Avenida Rómulo Gallegos, Caracas 1071, Miranda
                     </address>
                 </li>
-                <li><i class="fa fa-phone"></i> +00 (123) 456 7890</li>
-                <li><i class="fa fa-fax"></i> +00 (123) 456 7890</li>
-                <li><i class="fa fa-envelope-o"></i> info@domain.com</li>
+                <li><i class="fa fa-phone"></i> +58 (212) 794 0963 / 794 1869 </li>
+                <li><i class="fa fa-phone"></i> +58 (212) 237 0568 / 239 7939</li>
+                <!--<li><i class="fa fa-fax"></i> +00 (212) 239 7939</li>-->
+                <li><i class="fa fa-envelope-o"></i> info@unihumboldt.edu.ve</li>
             </ul>
         </div>
-        <div class="one_third">
+        <!--<div class="one_third">
             <h6 class="heading">velit porttitor ac euismod</h6>
             <ul class="nospace linklist">
                 <li>
@@ -353,7 +347,7 @@ Licence URI: http://www.os-templates.com/template-terms
                     </article>
                 </li>
             </ul>
-        </div>
+        </div>-->
         <!-- ################################################################################################ -->
     </footer>
 </div>
@@ -363,14 +357,14 @@ Licence URI: http://www.os-templates.com/template-terms
 <div class="wrapper quicklinks">
     <nav class="hoc clear">
         <!-- ################################################################################################ -->
-        <ul class="nospace">
+       <!-- <ul class="nospace">
             <li><a href="#"><i class="fa fa-lg fa-home"></i></a></li>
             <li><a href="#">About</a></li>
             <li><a href="#">Contact</a></li>
             <li><a href="#">Blog</a></li>
             <li><a href="#">FAQ</a></li>
             <li><a href="#">Shop</a></li>
-        </ul>
+        </ul>-->
         <!-- ################################################################################################ -->
     </nav>
 </div>
@@ -380,8 +374,8 @@ Licence URI: http://www.os-templates.com/template-terms
 <div class="wrapper row5">
     <div id="copyright" class="hoc clear">
         <!-- ################################################################################################ -->
-        <p class="fl_left">Copyright &copy; 2016 - All Rights Reserved - <a href="#">Domain Name</a></p>
-        <p class="fl_right">Template by <a target="_blank" href="http://www.os-templates.com/" title="Free Website Templates">OS Templates</a></p>
+        <p class="fl_left">Copyright &copy; 2004 - 2018 - All Rights Reserved - <a href="#">Universidad Alejandro de Humboldt</a></p>
+        <!--<p class="fl_right">Template by <a target="_blank" href="http://www.os-templates.com/" title="Free Website Templates">OS Templates</a></p>-->
         <!-- ################################################################################################ -->
     </div>
 </div>

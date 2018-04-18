@@ -2,10 +2,8 @@
 
 namespace App;
 
-use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Spatie\Permission\Traits\HasRoles;
-//use App\Estudiantes;
+use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
@@ -17,7 +15,8 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        /*'name', 'email',*/ 'cedula', 'password',
+        /*'name', 'email',*/
+        'cedula', 'password',
     ];
 
     protected $nombre;
@@ -30,12 +29,8 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    /*public function Name(){
-        $cedula=Auth::users()->cedula;
-        $nombre = Estudiantes::where('cedula', '=', $cedula)->firstOrFail();
-        return $nombre;
-    }*/
-    public function getEstudiante(){
-        return $this->belongsTo('App\Estudiantes','cedula');
+    public function getEstudiante()
+    {
+        return $this->belongsTo('App\Estudiantes', 'cedula');
     }
 }
