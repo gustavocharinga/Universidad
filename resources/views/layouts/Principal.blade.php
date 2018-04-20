@@ -19,7 +19,7 @@ Licence URI: http://www.os-templates.com/template-terms
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
 <!-- Top Background Image Wrapper -->
-<div class="bgded overlay" style="background-image:url('images/01.png');">
+<div class="bgded overlay home">
 
     <!-- ################################################################################################ -->
     <div class="wrapper row1">
@@ -40,7 +40,7 @@ Licence URI: http://www.os-templates.com/template-terms
                             @if(empty(Auth::user()->getEstudiante->cedula))
                             {{ Auth::user()->cedula }}
                                 @else
-                                {{Auth::user()->getEstudiante->name}} {{Auth::user()->getEstudiante->lastname}}
+                                {{ Auth::user()->getEstudiante->name }} {{ Auth::user()->getEstudiante->lastname }}
                                 @endif
                                 <span class="caret"></span>
                                 <div class="fa fa-angle-down"></div>
@@ -89,9 +89,12 @@ Licence URI: http://www.os-templates.com/template-terms
             <ul class="slides">
                 <li>
                     <article>
-                        <p class="heading">Cum sociis natoque penatibus</p>
-                        <h2 class="heading">Tincidunt nec venenatis etiam tellus</h2>
-                        <p>Et magnis dis montes ridiculus mus sed mi eros molestie eget mauris</p>
+                        <p class="heading">Carrera</p>
+                        <h2 class="heading">Ingeniería en Informática</h2>
+                        <p>Un profesional  con amplia preparación científica, técnica
+                            y humanística, que es capaz de planificar, supervisar y administrar  proyectos en el
+                            área de Informática, así como   de  desarrollar  y controlar sistemas de computación
+                            y  de información.</p>
                         <footer>
                             <ul class="nospace inline pushright">
                                 <li><a class="btn" href="#">Parturient</a></li>
@@ -102,9 +105,13 @@ Licence URI: http://www.os-templates.com/template-terms
                 </li>
                 <li>
                     <article>
-                        <p class="heading">Urna gravida eget consequat</p>
-                        <h2 class="heading">Rhoncus pharetra ligula vestibulum</h2>
-                        <p>Sed varius dui eget convallis nibh lectus ultricies lacus ac auctor lacus</p>
+                        <p class="heading">Carrera</p>
+                        <h2 class="heading">Ingeniería en Mantenimiento de Obras</h2>
+                        <p>Un   profesional que pueda ser responsable del mantenimiento
+                            de todas las partes   que    conforman   las
+                            obras   civiles y  de los equipos   electromecónicos   que  se
+                            encuentran  más  frecuentemente en ellas, del buen aspecto de los bienes
+                            y   de   la  seguridad  de operarios  y usuarios de las instalaciones a su cargo.</p>
                         <footer>
                             <ul class="nospace inline pushright">
                                 <li><a class="btn" href="#">Consequat</a></li>
@@ -115,9 +122,10 @@ Licence URI: http://www.os-templates.com/template-terms
                 </li>
                 <li>
                     <article>
-                        <p class="heading">Porta congue lacus eleifend</p>
-                        <h2 class="heading">Efficitur porta quisque nisl odio suscipit</h2>
-                        <p>Ante et velit in elit sapien vulputate non mattis ut euismod sed nisi</p>
+                        <p class="heading">Carrera</p>
+                        <h2 class="heading">Publicidad</h2>
+                        <p>Un  profesional  para la publicidad altamente capacitado en materia de Comunicación Publicitaria
+                            y en dirección   y  organización  de Empresas publicitarias el sector público y privado.</p>
                         <footer>
                             <ul class="nospace inline pushright">
                                 <li><a class="btn" href="#">Accumsan</a></li>
@@ -136,12 +144,12 @@ Licence URI: http://www.os-templates.com/template-terms
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
-<!--<div class="wrapper row4">
+{{-- comienzo <div class="wrapper row4">
 
     <main>
         @yield('content')
     </main>
-    <section class="hoc container clear">
+    {{--<section class="hoc container clear">
         <!-- ################################################################################################ -->
         <!--<div class="center btmspace-80">
             <h2 class="heading nospace">Vehicula donec dignissim</h2>
@@ -194,8 +202,8 @@ Licence URI: http://www.os-templates.com/template-terms
         <!-- ################################################################################################ -->
         <!--<div class="clear"></div>-->
     </section>
-<!--</div>-->
-<div class="wrapper row3">
+</div> fin --}}
+{{--comienzo de linea--<div class="wrapper row3">
     <main class="hoc container clear">
         <!-- main body -->
         <!-- ################################################################################################ -->
@@ -297,14 +305,22 @@ Licence URI: http://www.os-templates.com/template-terms
         </ul>
         <!-- ################################################################################################ -->
     </section>
-</div>
+</div>{{--fin de linea--}}
+@guest
 <div class="wrapper row4">
     <footer id="footer" class="hoc clear">
         <!-- ################################################################################################ -->
         <div class="one_third first">
-            <h6 class="heading">est ut dolor tristique</h6>
-            <p>maecenas tempus vestibulum felis in efficitur sed facilisis urna metus interdum pretium mi dignissim et fusce.</p>
-            <p class="btmspace-15">sagittis tempor nullam iaculis dolor id condimentum cursus duis scelerisque ac metus amet laoreet vestibulum dictum.</p>
+            <h6 class="heading">Actividades Deportivas y Redes Sociales</h6>
+            <ul>
+                <li>Futbol</li>
+                <li>Baloncesto</li>
+                <li>Futbolito</li>
+                <li>Softball</li>
+                <li>Excursionismo</li>
+                <li>Ajedréz</li>
+            </ul>
+            {{-- <p class="btmspace-15">sagittis tempor nullam iaculis dolor id condimentum cursus duis scelerisque ac metus amet laoreet vestibulum dictum.</p>--}}
             <ul class="faico clear">
                 <li><a class="faicon-facebook" href="#"><i class="fa fa-facebook"></i></a></li>
                 <li><a class="faicon-twitter" href="#"><i class="fa fa-twitter"></i></a></li>
@@ -351,6 +367,7 @@ Licence URI: http://www.os-templates.com/template-terms
         <!-- ################################################################################################ -->
     </footer>
 </div>
+@endguest
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
