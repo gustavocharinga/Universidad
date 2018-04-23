@@ -15,6 +15,10 @@ class CursosController extends Controller
     public function index()
     {
         //
+        $courses=cursos::paginate();
+        return response()->json([
+            'cursos'=>$courses
+        ],200);
     }
 
     /**
@@ -36,6 +40,10 @@ class CursosController extends Controller
     public function store(Request $request)
     {
         //
+        cursos::create()->json($request->all());
+        return response()->json([
+            'mensaje'=>'Curso Creado'
+        ],200);
     }
 
     /**
@@ -67,9 +75,15 @@ class CursosController extends Controller
      * @param  \App\cursos  $cursos
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, cursos $cursos)
+    //public function update(Request $request, cursos $cursos)
+    public function update(Request $request,$id)
     {
         //
+        $curso=cursos::find($id);
+        $curso->update($request->all());
+        return response()->json([
+            'mensaje'=>'Curso Actualizado'
+        ],200);
     }
 
     /**
@@ -78,8 +92,14 @@ class CursosController extends Controller
      * @param  \App\cursos  $cursos
      * @return \Illuminate\Http\Response
      */
-    public function destroy(cursos $cursos)
+    //public function destroy(cursos $cursos)
+    public  function destroy($id)
     {
         //
+        $curso=cursos::find($id);
+        $curso->delete();
+        return response()->json([
+            'mensaje'=>'Curso Eliminado'
+        ],200);
     }
 }

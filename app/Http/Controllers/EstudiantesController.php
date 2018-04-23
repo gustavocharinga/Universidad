@@ -14,7 +14,10 @@ class EstudiantesController extends Controller
      */
     public function index()
     {
-        //
+        $estudiantes=Estudiantes::paginate();
+        return response()->json([
+            'estudiantes'=>$estudiantes
+        ],200);
     }
 
     /**
@@ -36,6 +39,10 @@ class EstudiantesController extends Controller
     public function store(Request $request)
     {
         //
+        Estudiantes::created()->json($request->all());
+        return response()->json([
+            'mensaje'=>'Estudiante Creado'
+        ],200);
     }
 
     /**
@@ -67,9 +74,15 @@ class EstudiantesController extends Controller
      * @param  \App\Estudiantes  $estudiantes
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Estudiantes $estudiantes)
+    //public function update(Request $request, Estudiantes $estudiantes)
+    public function update(Request $request, $id)
     {
         //
+        $estudiante=Estudiantes::find($id);
+        $estudiante->update($request->all());
+        return response()->json([
+            'mensaje'=>'Los datos del Estudiante han sido Actualizados'
+        ],200);
     }
 
     /**
@@ -78,8 +91,14 @@ class EstudiantesController extends Controller
      * @param  \App\Estudiantes  $estudiantes
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Estudiantes $estudiantes)
+    //public function destroy(Estudiantes $estudiantes)
+    public function destroy($id)
     {
         //
+        $estudiante=Estudiantes::find($id);
+        $estudiante->delete();
+        return response()->json([
+            'mensaje'=>'Estudiante Borrado'
+        ],200);
     }
 }

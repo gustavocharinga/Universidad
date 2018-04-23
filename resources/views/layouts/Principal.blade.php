@@ -12,15 +12,28 @@ Licence URI: http://www.os-templates.com/template-terms
     <title> Universidad Alejandro de Humboldt</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="csrf-token" content="{{csrf_token()}}">
+    <script>
+        window.Laravel={csrfToken:'{{csrf_token()}}'}
+    </script>
     <link href="{{ asset('css/layout.css') }}" rel="stylesheet" type="text/css" media="all">
+    <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}" async></script>
+
+    <!-- Styles -->
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body id="top">
+<div id="app">
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
 <!-- Top Background Image Wrapper -->
-<div class="bgded overlay home">
-
+@guest
+    <div class="bgded overlay home">
+@else
+        <div class="bgded overlay principalA">
+            @endguest
     <!-- ################################################################################################ -->
     <div class="wrapper row1">
         <header id="header" class="hoc clear">
@@ -83,64 +96,19 @@ Licence URI: http://www.os-templates.com/template-terms
     <!-- ################################################################################################ -->
     <!-- ################################################################################################ -->
     <!-- ################################################################################################ -->
-    <div id="pageintro" class="hoc clear">
-        <!-- ################################################################################################ -->
-        <div class="flexslider basicslider">
-            <ul class="slides">
-                <li>
-                    <article>
-                        <p class="heading">Carrera</p>
-                        <h2 class="heading">Ingeniería en Informática</h2>
-                        <p>Un profesional  con amplia preparación científica, técnica
-                            y humanística, que es capaz de planificar, supervisar y administrar  proyectos en el
-                            área de Informática, así como   de  desarrollar  y controlar sistemas de computación
-                            y  de información.</p>
-                        <footer>
-                            <ul class="nospace inline pushright">
-                                <li><a class="btn" href="#">Parturient</a></li>
-                                <li><a class="btn inverse" href="#">Nascetur</a></li>
-                            </ul>
-                        </footer>
-                    </article>
-                </li>
-                <li>
-                    <article>
-                        <p class="heading">Carrera</p>
-                        <h2 class="heading">Ingeniería en Mantenimiento de Obras</h2>
-                        <p>Un   profesional que pueda ser responsable del mantenimiento
-                            de todas las partes   que    conforman   las
-                            obras   civiles y  de los equipos   electromecónicos   que  se
-                            encuentran  más  frecuentemente en ellas, del buen aspecto de los bienes
-                            y   de   la  seguridad  de operarios  y usuarios de las instalaciones a su cargo.</p>
-                        <footer>
-                            <ul class="nospace inline pushright">
-                                <li><a class="btn" href="#">Consequat</a></li>
-                                <li><a class="btn inverse" href="#">Phasellus</a></li>
-                            </ul>
-                        </footer>
-                    </article>
-                </li>
-                <li>
-                    <article>
-                        <p class="heading">Carrera</p>
-                        <h2 class="heading">Publicidad</h2>
-                        <p>Un  profesional  para la publicidad altamente capacitado en materia de Comunicación Publicitaria
-                            y en dirección   y  organización  de Empresas publicitarias el sector público y privado.</p>
-                        <footer>
-                            <ul class="nospace inline pushright">
-                                <li><a class="btn" href="#">Accumsan</a></li>
-                                <li><a class="btn inverse" href="#">Molestie</a></li>
-                            </ul>
-                        </footer>
-                    </article>
-                </li>
-            </ul>
-        </div>
-        <!-- ################################################################################################ -->
-    </div>
+        @guest
+                    <sliders-imagen></sliders-imagen>
+                @else
+            @yield('content')
+                @endguest
+
     <!-- ################################################################################################ -->
+          @guest
+        </div>
+    @else
 </div>
-<!-- End Top Background Image Wrapper -->
+    @endguest
+            <!-- End Top Background Image Wrapper -->
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
@@ -400,6 +368,7 @@ Licence URI: http://www.os-templates.com/template-terms
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
 <a id="backtotop" href="#top"><i class="fa fa-chevron-up"></i></a>
+</div>
 <!-- JAVASCRIPTS -->
 <script src="{{asset('js/jquery.min.js')}}"></script>
 <script src="{{asset('js/jquery.backtotop.js')}}"></script>
@@ -425,5 +394,6 @@ Licence URI: http://www.os-templates.com/template-terms
         });
     });
 </script>
+
 </body>
 </html>

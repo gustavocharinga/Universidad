@@ -270,6 +270,10 @@ input:focus, textarea:focus, *:required:focus{border-color:#FF5723;}
 	background-image:url('../images/UAH.png');
 	background-attachment: scroll;
 }
+.principalA{
+    background: url('../images/Fondo2.png');
+    background-size: cover;
+}
 /* Header */
 #header #logo a{color:inherit;}
 
