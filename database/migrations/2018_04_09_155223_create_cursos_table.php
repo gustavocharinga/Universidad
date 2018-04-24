@@ -19,6 +19,7 @@ class CreateCursosTable extends Migration
             $table->string('description')->nullable(true);
             $table->integer('creditos');
             $table->timestamps();
+            $table->primary(['code_course']);
         });
     }
 

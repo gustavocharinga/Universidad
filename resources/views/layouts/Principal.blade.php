@@ -49,7 +49,8 @@ Licence URI: http://www.os-templates.com/template-terms
                         <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
                         <li><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></li>
                     @else
-                    <li><a href="#">
+                        <li><a class="nav-link" href="{{ route('cursos.index') }}">{{ __('Plan de Estudio') }}</a></li>
+                        <li><a href="#">
                             @if(empty(Auth::user()->getEstudiante->cedula))
                             {{ Auth::user()->cedula }}
                                 @else
@@ -99,7 +100,9 @@ Licence URI: http://www.os-templates.com/template-terms
         @guest
                     <sliders-imagen></sliders-imagen>
                 @else
+
             @yield('content')
+
                 @endguest
 
     <!-- ################################################################################################ -->

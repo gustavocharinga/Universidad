@@ -13,12 +13,12 @@ class CreateInscripcionesTable extends Migration
      */
     public function up()
     {
-        Schema::create('inscripciones', function (Blueprint $table) {
-            $table->string('code_course');
-            $table->string('periodo');
-            $table->foreign('code_course')->references('code_course')->on('cursos');
+        /*Schema::create('inscripciones', function (Blueprint $table) {
+            //$table->string('code_course');
+            //$table->string('periodo');
+           // $table->foreign('code_course')->references('code_course')->on('cursos');
             //$table->timestamps();
-        });
+        });*/
     }
 
     /**
@@ -28,6 +28,6 @@ class CreateInscripcionesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('inscripciones');
+        //Schema::dropIfExists('inscripciones');
     }
 }

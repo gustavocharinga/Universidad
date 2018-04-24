@@ -1,33 +1,26 @@
 <template>
-    <div>
-    <div id="pageintro" class="hoc clear" >
+    <div id="pageintro" class="hoc clear">
 
-        <div align="center" >
-        <h1>Bienvenido</h1>
+        <div align="center">
+            <h1><strong>Bienvenido</strong></h1>
         </div>
-
-    </div>
-    <div class="hoc container clear">
-
-    <div class="center btmspace-80">
-        <div></div>
-
-    </div>
-
-
-    <div class="clear"></div>
-    </div>
+        <div class="hoc container clear">
+            <div class="center btmspace-80">
+                <img :src="'/images/UAH_LOGO_.png'">
+            </div>
+            <div class="clear"></div>
+        </div>
     </div>
 </template>
 
 <script>
     //export default {
-      //  name: "Inicio"
+    //  name: "Inicio"
     //}
 </script>
 
 <style scoped>
-#pageintro{
-    height: 120%;
-}
+    #pageintro {
+        height: 120%;
+    }
 </style>

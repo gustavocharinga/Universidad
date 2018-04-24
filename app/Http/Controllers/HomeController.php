@@ -29,4 +29,8 @@ class HomeController extends Controller
     public function prueba(){
         return view('prueba');
     }
+
+    public function indexcurso(){
+        return view('cursos.index');
+    }
 }

@@ -15,10 +15,10 @@ class CreateMateriasAprobadasTable extends Migration
     {
         Schema::create('materias_aprobadas', function (Blueprint $table) {
             $table->string('code_course');
-            $table->decimal('nota');
             $table->string('periodo');
-            $table->foreign('code_course')->references('code_course')->on('cursos');
-
+            $table->decimal('nota');
+            $table->foreign('code_course')->references('code_course')->on('estudiantes_cursos')->onDelete('cascade');
+            $table->foreign('periodo')->references('periodo')->on('estudiantes_cursos');
 
             //$table->timestamps();
         });

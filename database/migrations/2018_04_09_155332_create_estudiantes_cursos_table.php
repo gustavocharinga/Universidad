@@ -16,6 +16,7 @@ class CreateEstudiantesCursosTable extends Migration
         Schema::create('estudiantes_cursos', function (Blueprint $table) {
             $table->Integer('cedula')->unique();
             $table->string('code_course')->unique();
+            $table->string('periodo')->unique();
             $table->foreign('cedula')->references('cedula')->on('estudiantes')->onDelete('cascade');
             $table->foreign('code_course')->references('code_course')->on('cursos')->onDelete('cascade');
 

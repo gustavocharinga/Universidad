@@ -18,6 +18,7 @@ window.Vue = require('vue');
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
 Vue.component('sliders-imagen', require('./components/Sliders.vue'));
 Vue.component('inicio', require('./components/Inicio.vue'));
+Vue.component('courses', require('./components/Courses.vue'));
 
 const app = new Vue({
     el: '#app'

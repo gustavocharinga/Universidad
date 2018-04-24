@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class cursos extends Model
 {
     //
-    protected $primaryKey='code_course';
+    //protected $primaryKey='code_course';
 
     protected $fillable = [
         'code_course',
