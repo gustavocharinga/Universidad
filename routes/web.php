@@ -21,6 +21,9 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/cursos','HomeController@indexcurso')->name('cursos.index');
+
+Route::get('/cursos/registrar','HomeController@createCurso')->name('cursos.crear');
+
 Route::get('/home', 'HomeController@index')->name('home');
 
 Auth::routes();

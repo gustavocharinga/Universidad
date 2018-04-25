@@ -33,4 +33,8 @@ class HomeController extends Controller
     public function indexcurso(){
         return view('cursos.index');
     }
+
+    public function createCurso(){
+        return view('cursos.create');
+    }
 }
