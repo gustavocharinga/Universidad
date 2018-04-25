@@ -1,25 +1,6 @@
 <template>
     <div class="container">
         <div class="col-md-1"></div>
-        <!--<div class="card col-md-2 col-md-2" style="width: 18rem;" v-for="course in course" :key="course">
-            <div class="card-body">
-                <h5 class="card-title">{{course.code_course}}</h5>
-                <h6 class="card-subtitle mb-2 text-muted">{{course.course}}</h6>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <p class="heading">{{course.creditos}}</p>
-                <a href="#" class="card-link">Another link</a>
-            </div>
-        </div>
-            <div class="card col-md-2" style="width: 18rem;">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="card-link">Card link</a>
-                    <a href="#" class="card-link">Another link</a>
-                </div>
-            </div>-->
-
         <table class="table table-striped">
             <thead>
             <tr>
@@ -29,88 +10,102 @@
             </tr>
             </thead>
             <tbody>
-            <tr v-for="course in course" :key="course.id">
-                <td class="heading" align="center">{{course.code_course}}</td>
-                <td class="heading">{{course.course}}</td>
-                <td class="heading">{{course.creditos}}</td>
+            <tr v-for="courses in courses.data" :key="courses.id">
+                <td class="heading" align="center">{{courses.code_course}}</td>
+                <td class="heading">{{courses.course}}</td>
+                <td class="heading">{{courses.creditos}}</td>
             </tr>
             </tbody>
-            <!--<ul class="pager">
-                <li class="previous" v-show="pagination.previous">
-                    <a class="page-scroll" v-on:click="fetchCoursePaginate('previous')" href="#">Previous</a>
-                </li>
-                <li class="next" v-show="pagination.next">
-                    <a class="page-scroll" v-on:click="fetchCoursePaginate('next')" href="#">Next</a>
-                </li>
-            </ul>-->
         </table>
-        <!--<v-paginator :options="options" :resource_url="resource_url" @update="updateResource"></v-paginator>-->
+        <div align="center">
+            <ul class="pagination">
+                <li v-if="courses.current_page > 1">
+                    <a href="javascript:void(0)" aria-label="Previous"
+                       v-on:click.prevent="getCursos(courses.current_page - 1)">
+                        <span aria-hidden="true">«</span>
+                    </a>
+                </li>
+                <li v-for="page in courses.last_page" :class="{'active': page == courses.current_page}">
+                    <a href="javascript:void(0)" v-on:click.prevent="getCursos(page)">{{ page }}</a>
+                </li>
+                <li v-if="courses.current_page < courses.last_page">
+                    <a href="javascript:void(0)" aria-label="Next"
+                       v-on:click.prevent="getCursos(courses.current_page + 1)">
+                        <span aria-hidden="true">»</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
     </div>
 </template>
 
 <script>
-    import VuePaginator from '../../../../node_modules/vuejs-paginator'
+    import VuePaginator from '../../../../node_modules/vuejs-paginator';
+    import VuePagination from '../../../../node_modules/vuejs-paginator-axios';
+
     export default {
         name: "courses",
         components: {
-            VPaginator: VuePaginator
+            VPaginator: VuePaginator,
+            VuePagination
         },
         data() {
             return {
-                course: {
-                    code_course: '',
-                    course: '',
-                    creditos: ''
+                courses: {
+                    total: 0,
+                    per_page: 10,
+                    from: 1,
+                    to: 0,
+                    current_page: 1
                 },
-                pagination: {},
-                //courses:{},
-                /*resource_url: 'http://localhost:8000/api/cursos?page=1',
-                options: {
-                    remote_data: 'nested.data',
-                    remote_current_page: 'nested.current_page',
-                    remote_last_page: 'nested.last_page',
-                    remote_next_page_url: 'nested.next_page_url',
-                    remote_prev_page_url: 'nested.prev_page_url',
-                    next_button_text: 'Go Next',
-                    previous_button_text: 'Go Back'
-                }*/
             }
         },
-        created() {
-            axios.get('http://localhost:8000/api/cursos').then(response => {
-                console.log('data: ', response.data.cursos.data);
+        methods: {
+            getCursos(page) {
+                axios.get('http://localhost:8000/api/cursos?page=' + page).then(response => {
+                    console.log('data: ', response.data.cursos.data);
 
-                console.log('page: ',response.data);
-                this.pagination=response.data;
-                //this.course = response.data.cursos;
-                this.course = response.data.cursos.data;
-                $this.courses=response.data.cursos;
+                    console.log('page: ', response.data);
+                    //this.course = response.data.cursos.data;
+                    this.courses = response.data.cursos;
 
-            }).catch(e => {
-                this.errors.push(e)
-            })
+                }).catch(e => {
+                    this.courses.current_page.push(courses.current_page),
+                        this.errors.push(e)
+                })
+            },
         },
-        /*methods: {
-            updateResource(pagination){
-                this.courses = pagination.cursos;
-            }
-        }*/
+        mounted() {
+            this.getCursos();
+        },
     }
 </script>
 
 <style scoped>
-    .heading{
+    .heading {
         font-size: 15px;
     }
-    tbody>tr:nth-child(odd) {
 
-        background-color:#7BA7E1;
+    tbody > tr:nth-child(odd) {
+
+        background-color: #7BA7E1;
 
     }
 
-    tbody>tr:nth-child(even) {
+    tbody > tr:nth-child(even) {
 
-        background-color:#fbfbfb;
+        background-color: #fbfbfb;
 
+    }
+
+    ul {
+        margin-left: 40%;
+        margin-right: 40%;
+    }
+
+    a {
+        color: blue;
+        font-style: oblique;
+        font-weight: bold;
     }
 </style>
