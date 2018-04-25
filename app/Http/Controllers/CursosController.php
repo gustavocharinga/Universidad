@@ -40,7 +40,7 @@ class CursosController extends Controller
     public function store(Request $request)
     {
         //
-        cursos::create()->json($request->all());
+        cursos::create($request->all());
         return response()->json([
             'mensaje'=>'Curso Creado'
         ],200);

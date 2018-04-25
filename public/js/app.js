@@ -14314,6 +14314,7 @@ Vue.component('example-component', __webpack_require__(42));
 Vue.component('sliders-imagen', __webpack_require__(45));
 Vue.component('inicio', __webpack_require__(51));
 Vue.component('courses', __webpack_require__(56));
+Vue.component('register-course', __webpack_require__(67));
 
 var app = new Vue({
   el: '#app'
@@ -48933,6 +48934,545 @@ return /******/ (function(modules) { // webpackBootstrap
 });
 ;
 //# sourceMappingURL=vuejs-paginator-axios.js.map
+
+/***/ }),
+/* 67 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(68)
+}
+var normalizeComponent = __webpack_require__(2)
+/* script */
+var __vue_script__ = __webpack_require__(70)
+/* template */
+var __vue_template__ = __webpack_require__(71)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-2bf538d5"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\RegisterCourse.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-2bf538d5", Component.options)
+  } else {
+    hotAPI.reload("data-v-2bf538d5", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 68 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(69);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(5)("0c64f013", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-2bf538d5\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./RegisterCourse.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-2bf538d5\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./RegisterCourse.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 69 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(4)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 70 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    name: "RegisterCourse",
+    data: function data() {
+        return {
+            step: 1,
+            registration: {
+                name: null,
+                email: null,
+                street: null,
+                city: null,
+                state: null,
+                numtickets: 0,
+                shirtsize: 'XL'
+            }
+        };
+    },
+
+    methods: {
+        prev: function prev() {
+            this.step--;
+        },
+        next: function next() {
+            this.step++;
+        },
+        submit: function submit() {
+            var _this = this;
+
+            alert('Submit to blah and show blah and etc.');
+            /*axios.post('http://localhost:8000/api/cursos', {
+                code_course: '20',
+                course:'Prueba',
+                creditos: 5
+            }).then(function (response) {
+                console.log(response);
+                alert(response);
+            })
+                .catch(function (error) {
+                    console.log(error);
+                    alert(error);
+                });*/
+            axios.post('http://localhost:8000/api/cursos', {
+                code_course: '20',
+                course: 'Prueba',
+                creditos: 5
+            }).then(function (response) {
+
+                location.reload();
+            }).catch(function (e) {
+                _this.errors.push(e);
+            });
+        }
+    }
+
+});
+
+/***/ }),
+/* 71 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("form", [
+      _vm.step === 1
+        ? _c("div", [
+            _c("h1", [_vm._v("Step One")]),
+            _vm._v(" "),
+            _c("p"),
+            _c("legend", { attrs: { for: "name" } }, [_vm._v("Your Name:")]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.registration.name,
+                  expression: "registration.name"
+                }
+              ],
+              attrs: { id: "name", name: "name" },
+              domProps: { value: _vm.registration.name },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.registration, "name", $event.target.value)
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c("p"),
+            _vm._v(" "),
+            _c("p"),
+            _c("legend", { attrs: { for: "email" } }, [_vm._v("Your Email:")]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.registration.email,
+                  expression: "registration.email"
+                }
+              ],
+              attrs: { id: "email", name: "email", type: "email" },
+              domProps: { value: _vm.registration.email },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.registration, "email", $event.target.value)
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c("p"),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                on: {
+                  click: function($event) {
+                    $event.preventDefault()
+                    _vm.next()
+                  }
+                }
+              },
+              [_vm._v("Next")]
+            )
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.step === 2
+        ? _c("div", [
+            _c("h1", [_vm._v("Step Two")]),
+            _vm._v(" "),
+            _c("p"),
+            _c("legend", { attrs: { for: "street" } }, [
+              _vm._v("Your Street:")
+            ]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.registration.street,
+                  expression: "registration.street"
+                }
+              ],
+              attrs: { id: "street", name: "street" },
+              domProps: { value: _vm.registration.street },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.registration, "street", $event.target.value)
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c("p"),
+            _vm._v(" "),
+            _c("p"),
+            _c("legend", { attrs: { for: "city" } }, [_vm._v("Your City:")]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.registration.city,
+                  expression: "registration.city"
+                }
+              ],
+              attrs: { id: "city", name: "city" },
+              domProps: { value: _vm.registration.city },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.registration, "city", $event.target.value)
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c("p"),
+            _vm._v(" "),
+            _c("p"),
+            _c("legend", { attrs: { for: "state" } }, [_vm._v("Your State:")]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.registration.state,
+                  expression: "registration.state"
+                }
+              ],
+              attrs: { id: "state", name: "state" },
+              domProps: { value: _vm.registration.state },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.registration, "state", $event.target.value)
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c("p"),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                on: {
+                  click: function($event) {
+                    $event.preventDefault()
+                    _vm.prev()
+                  }
+                }
+              },
+              [_vm._v("Previous")]
+            ),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                on: {
+                  click: function($event) {
+                    $event.preventDefault()
+                    _vm.next()
+                  }
+                }
+              },
+              [_vm._v("Next")]
+            )
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.step === 3
+        ? _c("div", [
+            _c("h1", [_vm._v("Step Three")]),
+            _vm._v(" "),
+            _c("p"),
+            _c("legend", { attrs: { for: "numtickets" } }, [
+              _vm._v("Number of Tickets:")
+            ]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.registration.numtickets,
+                  expression: "registration.numtickets"
+                }
+              ],
+              attrs: { id: "numtickets", name: "numtickets", type: "number" },
+              domProps: { value: _vm.registration.numtickets },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.registration, "numtickets", $event.target.value)
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c("p"),
+            _vm._v(" "),
+            _c("p"),
+            _c("legend", { attrs: { for: "shirtsize" } }, [
+              _vm._v("Shirt Size:")
+            ]),
+            _vm._v(" "),
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.registration.shirtsize,
+                    expression: "registration.shirtsize"
+                  }
+                ],
+                attrs: { id: "shirtsize", name: "shirtsize" },
+                on: {
+                  change: function($event) {
+                    var $$selectedVal = Array.prototype.filter
+                      .call($event.target.options, function(o) {
+                        return o.selected
+                      })
+                      .map(function(o) {
+                        var val = "_value" in o ? o._value : o.value
+                        return val
+                      })
+                    _vm.$set(
+                      _vm.registration,
+                      "shirtsize",
+                      $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                    )
+                  }
+                }
+              },
+              [
+                _c("option", { attrs: { value: "S" } }, [_vm._v("Small")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "M" } }, [_vm._v("Medium")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "L" } }, [_vm._v("Large")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "XL" } }, [_vm._v("X-Large")])
+              ]
+            ),
+            _vm._v(" "),
+            _c("p"),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                on: {
+                  click: function($event) {
+                    $event.preventDefault()
+                    _vm.prev()
+                  }
+                }
+              },
+              [_vm._v("Previous")]
+            ),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                on: {
+                  click: function($event) {
+                    $event.preventDefault()
+                    _vm.submit()
+                  }
+                }
+              },
+              [_vm._v("Save")]
+            )
+          ])
+        : _vm._e()
+    ]),
+    _vm._v(" "),
+    _c("br"),
+    _c("br"),
+    _vm._v("Debug: " + _vm._s(_vm.registration) + "\n")
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-2bf538d5", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);
