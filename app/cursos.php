@@ -20,4 +20,9 @@ class cursos extends Model
       'created_at',
       'updated_at'
     ];
+
+    public function coursePrelacion(){
+        return $this->belongsToMany('App\cursos', 'prelaciones',
+            'code_course_in', 'code_course_pre');
+    }
 }

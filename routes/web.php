@@ -24,6 +24,8 @@ Route::get('/cursos','HomeController@indexcurso')->name('cursos.index');
 
 Route::get('/cursos/registrar','HomeController@createCurso')->name('cursos.crear');
 
+Route::get('/cursos/registrar-prelacion','HomeController@registerPrelation')->name('cursos.crear.prelacion');
+
 Route::get('/home', 'HomeController@index')->name('home');
 
 Auth::routes();

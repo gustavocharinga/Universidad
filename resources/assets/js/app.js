@@ -21,6 +21,8 @@ Vue.component('inicio', require('./components/Inicio.vue'));
 Vue.component('courses', require('./components/Courses.vue'));
 Vue.component('register-course', require('./components/RegisterCourse.vue'));
 
+Vue.component('pre-course', require('./components/PrelacionCourse.vue'));
+
 const app = new Vue({
     el: '#app'
 });

@@ -6,12 +6,12 @@
                 <h1>Step One</h1>
                 <p>
                     <legend for="name">Your Name:</legend>
-                    <input id="name" name="name" v-model="registration.name">
+                    <input id="name" name="name" v-model="course.code_course">
                 </p>
 
                 <p>
                     <legend for="email">Your Email:</legend>
-                    <input id="email" name="email" type="email" v-model="registration.email">
+                    <input id="email" name="email" v-model="course.course">
                 </p>
 
                 <button @click.prevent="next()">Next</button>
@@ -22,12 +22,12 @@
                 <h1>Step Two</h1>
                 <p>
                     <legend for="street">Your Street:</legend>
-                    <input id="street" name="street" v-model="registration.street">
+                    <input id="street" name="street" v-model="course.description">
                 </p>
 
                 <p>
                     <legend for="city">Your City:</legend>
-                    <input id="city" name="city" v-model="registration.city">
+                    <input id="city" name="city" v-model="course.creditos">
                 </p>
 
                 <p>
@@ -63,7 +63,7 @@
 
             </div>
         </form>
-        <br/><br/>Debug: {{registration}}
+        <br/><br/>Debug: {{registration}}<br/><br/> debug: {{course}}
     </div>
 </template>
 
@@ -81,6 +81,12 @@
                     state: null,
                     numtickets: 0,
                     shirtsize: 'XL'
+                },
+                course:{
+                    code_course: '',
+                    course:'',
+                    description: '',
+                    creditos: ''
                 }
             }
         },
@@ -93,24 +99,7 @@
             },
             submit() {
                 alert('Submit to blah and show blah and etc.');
-                /*axios.post('http://localhost:8000/api/cursos', {
-                    code_course: '20',
-                    course:'Prueba',
-                    creditos: 5
-                }).then(function (response) {
-                    console.log(response);
-                    alert(response);
-                })
-                    .catch(function (error) {
-                        console.log(error);
-                        alert(error);
-                    });*/
-                axios.post('http://localhost:8000/api/cursos', {
-                    code_course: '20',
-                    course:'Prueba',
-                    creditos: 5
-                }).then(response => {
-
+                axios.post('http://localhost:8000/api/cursos', this.course).then(response => {
                     location.reload();
                 }).catch(e => {
                         this.errors.push(e)

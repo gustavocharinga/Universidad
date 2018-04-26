@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\cursos;
 
 class HomeController extends Controller
 {
@@ -36,5 +37,16 @@ class HomeController extends Controller
 
     public function createCurso(){
         return view('cursos.create');
+    }
+
+    public function registerPrelation(){
+        $cursos = cursos::paginate(10);
+        //if(Auth::user()->hasRole('Administrador')){
+            return view('cursos.prelacion', ['course' => $cursos]);
+        //}elseif(Auth::user()->hasRole('Cliente')){
+            //return view('/paquetesn', ['packages' => $packages]);
+        //}else{
+          //  return redirect('/');
+        //}
     }
 }
