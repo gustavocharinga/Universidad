@@ -41,8 +41,9 @@ class HomeController extends Controller
 
     public function registerPrelation(){
         $cursos = cursos::paginate(10);
+        $cursoss = cursos::coursePrelacion()->get();
         //if(Auth::user()->hasRole('Administrador')){
-            return view('cursos.prelacion', ['course' => $cursos]);
+            return view('cursos.prelacion', ['course' => $cursos,'cursoss'=>$cursoss]);
         //}elseif(Auth::user()->hasRole('Cliente')){
             //return view('/paquetesn', ['packages' => $packages]);
         //}else{

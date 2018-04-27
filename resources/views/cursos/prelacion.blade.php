@@ -2,4 +2,6 @@
 
 @section('content')
     <pre-course></pre-course>
+
+
     @endsection
