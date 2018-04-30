@@ -1,7 +1,11 @@
 @extends('layouts.Principal')
 
 @section('content')
-    <pre-course></pre-course>
+    probando
+    @foreach($cursoss->coursePrelacion as $cursoss)
+        <p> prueba {{$cursoss->course}}</p>
+    @endforeach
+    {{--<pre-course></pre-course>--}}
 
 
     @endsection

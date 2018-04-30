@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\cursos;
+use Illuminate\Support\Facades\App;
 
 class HomeController extends Controller
 {
@@ -40,9 +41,18 @@ class HomeController extends Controller
     }
 
     public function registerPrelation(){
-        $cursos = cursos::paginate(10);
-        $cursoss = cursos::coursePrelacion()->get();
+        $cursos = cursos::paginate();
+        $cursoss = cursos::find('II0324V1');
+        //$cursoss->coursePrelacion();
         //if(Auth::user()->hasRole('Administrador')){
+        $page='II0324V1';
+        //var_dump($cursoss->coursePrelacion);
+        /*foreach ($cursoss as $cursoss->coursePrelacion) {
+             echo $cursoss->code_course_in;
+        }*/
+
+        //exit();
+        //die();
             return view('cursos.prelacion', ['course' => $cursos,'cursoss'=>$cursoss]);
         //}elseif(Auth::user()->hasRole('Cliente')){
             //return view('/paquetesn', ['packages' => $packages]);
