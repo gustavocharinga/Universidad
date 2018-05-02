@@ -14,7 +14,7 @@ class CreateCursosTable extends Migration
     public function up()
     {
         Schema::create('cursos', function (Blueprint $table) {
-            $table->string('code_course')->unique()->default(1);
+            $table->string('code_course')->unique();
             $table->string('course')->nullable(true);
             $table->string('description')->nullable(true);
             $table->integer('creditos')->nullable(true);

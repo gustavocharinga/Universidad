@@ -8,6 +8,7 @@ class cursos extends Model
 {
     //
     protected $primaryKey='code_course';
+    public $incrementing=false;
     //protected $table='cursos';
     //protected $relations='prelaciones';
     //protected $relations='code_course';
@@ -25,8 +26,11 @@ class cursos extends Model
       'updated_at'
     ];
     public function coursePrelacion(){
-        //return $this->hasMany('App\cursos');
         return $this->belongsToMany('App\cursos', 'prelaciones',
             'code_course_in', 'code_course_pre');
+    }
+    public function coursePrelo(){
+        return $this->belongsToMany('App\cursos', 'prelaciones',
+            'code_course_pre', 'code_course_in');
     }
 }
