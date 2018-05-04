@@ -13,7 +13,7 @@
         <p> a) creditos: {{$cursoses->creditos}} Materia: {{$cursoses->course}}</p>
     @endforeach
 
-    {{--<pre-course></pre-course>--}}
+    <pre-course></pre-course>
 
 
     @endsection

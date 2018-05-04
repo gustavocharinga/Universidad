@@ -7,13 +7,15 @@
                 <th>Codigo Curso</th>
                 <th>Curso</th>
                 <th>Creditos</th>
+                <th>Prelaacion</th>
             </tr>
             </thead>
             <tbody>
-            <tr v-for="courses in courses.data" :key="courses.id">
+            <tr v-for="courses in courses.data" :key="courses.id" v-on:load="find_pre(courses.code_course)">
                 <td class="heading" align="center">{{courses.code_course}}</td>
                 <td class="heading">{{courses.course}}</td>
                 <td class="heading">{{courses.creditos}}</td>
+                <td class="heading">@{{prelacion}}</td>
             </tr>
             </tbody>
         </table>
@@ -58,6 +60,9 @@
                     to: 0,
                     current_page: 1
                 },
+                prelacion: {
+                    code_course:''
+                }
             }
         },
         methods: {
@@ -74,9 +79,17 @@
                         this.errors.push(e)
                 })
             },
+            find_pre(id) {
+                axios.post('cursos').then(result => {
+                    console.log('load: ',result);
+                }).catch(err => {
+                    console.log(err);
+                });
+            },
         },
         mounted() {
             this.getCursos();
+            this.find_pre(id);
         },
     }
 </script>

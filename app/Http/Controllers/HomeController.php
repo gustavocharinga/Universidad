@@ -40,6 +40,13 @@ class HomeController extends Controller
         return view('cursos.create');
     }
 
+    public function buscar($id){
+        $resultado= cursos::findOrFail($id)->coursePrelacion;
+        return response()->json([
+            'prelacion'=> $resultado
+        ],200);
+    }
+
     public function registerPrelation(){
         $cursos = cursos::paginate();
         $cursoss = cursos::find('II0324V1');

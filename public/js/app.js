@@ -48267,6 +48267,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 
@@ -48285,6 +48287,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 from: 1,
                 to: 0,
                 current_page: 1
+            },
+            prelacion: {
+                code_course: ''
             }
         };
     },
@@ -48302,10 +48307,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }).catch(function (e) {
                 _this.courses.current_page.push(courses.current_page), _this.errors.push(e);
             });
+        },
+        find_pre: function find_pre(id) {
+            axios.post('cursos').then(function (result) {
+                console.log('load: ', result);
+            }).catch(function (err) {
+                console.log(err);
+            });
         }
     },
     mounted: function mounted() {
         this.getCursos();
+        this.find_pre(id);
     }
 });
 
@@ -48807,19 +48820,34 @@ var render = function() {
       _c(
         "tbody",
         _vm._l(_vm.courses.data, function(courses) {
-          return _c("tr", { key: courses.id }, [
-            _c("td", { staticClass: "heading", attrs: { align: "center" } }, [
-              _vm._v(_vm._s(courses.code_course))
-            ]),
-            _vm._v(" "),
-            _c("td", { staticClass: "heading" }, [
-              _vm._v(_vm._s(courses.course))
-            ]),
-            _vm._v(" "),
-            _c("td", { staticClass: "heading" }, [
-              _vm._v(_vm._s(courses.creditos))
-            ])
-          ])
+          return _c(
+            "tr",
+            {
+              key: courses.id,
+              on: {
+                load: function($event) {
+                  _vm.find_pre(courses.code_course)
+                }
+              }
+            },
+            [
+              _c("td", { staticClass: "heading", attrs: { align: "center" } }, [
+                _vm._v(_vm._s(courses.code_course))
+              ]),
+              _vm._v(" "),
+              _c("td", { staticClass: "heading" }, [
+                _vm._v(_vm._s(courses.course))
+              ]),
+              _vm._v(" "),
+              _c("td", { staticClass: "heading" }, [
+                _vm._v(_vm._s(courses.creditos))
+              ]),
+              _vm._v(" "),
+              _c("td", { staticClass: "heading" }, [
+                _vm._v("@" + _vm._s(_vm.prelacion))
+              ])
+            ]
+          )
         })
       )
     ]),
@@ -48914,7 +48942,9 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Curso")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Creditos")])
+        _c("th", [_vm._v("Creditos")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Prelaacion")])
       ])
     ])
   }
@@ -49545,7 +49575,7 @@ exports = module.exports = __webpack_require__(3)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -49556,6 +49586,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
 //
 //
 //
@@ -49826,24 +49857,8 @@ var render = function() {
         )
       ]),
       _vm._v(" "),
-      _vm._l(_vm.course, function(value, key) {
-        return _c(
-          "div",
-          _vm._l(_vm.course[key], function(value) {
-            return _c("div", [
-              _vm._v(
-                "\n             " +
-                  _vm._s(value["code_course"]) +
-                  " - " +
-                  _vm._s(value["course"]) +
-                  "\n        "
-              )
-            ])
-          })
-        )
-      })
-    ],
-    2
+      _vm._v("\n    " + _vm._s(_vm.$cursoss) + "\n        ")
+    ]
   )
 }
 var staticRenderFns = [

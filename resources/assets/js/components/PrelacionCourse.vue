@@ -68,12 +68,13 @@
             prueba
             {{ key }}: {{ value['{course}'] }}
         </div>-->
-        <div v-for="(value, key) in course">
-            <div v-for="(value) in course[key]">
-                 {{ value['code_course']}} - {{value['course']}}
-            </div>
-            <!--{{ key }}: {{ value['code_course']}}-->
-        </div>
+        {{$cursoss}}
+            <!--<div v-for="(value, key) in course">
+                <div v-for="(value) in course[key]">
+                     {{ value['code_course']}} - {{value['course']}}
+                </div>
+                <!--{{ key }}: {{ value['code_course']}}-->
+        <!---</div>-->
     </div>
 </template>
 
