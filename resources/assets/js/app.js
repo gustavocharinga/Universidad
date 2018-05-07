@@ -23,6 +23,7 @@ Vue.component('register-course', require('./components/RegisterCourse.vue'));
 
 Vue.component('pre-course', require('./components/PrelacionCourse.vue'));
 
+//Vue.http.headers.common['X-CSRF-TOKEN'] = $('meta[name="csrf-token"]').attr('content');
 const app = new Vue({
     el: '#app'
 });

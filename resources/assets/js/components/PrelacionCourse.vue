@@ -68,19 +68,25 @@
             prueba
             {{ key }}: {{ value['{course}'] }}
         </div>-->
-        {{$cursoss}}
+        <input id="id" name="id" v-bind:value="course_in.code"/>
+        <button name="code_course" v-model="course_in.code" class="btn btn-primary" v-on:click.prevent="buscar()">Buscar</button>
+        <button name="code_course" v-model="course_in.code" class="btn btn-primary" v-on:click.prevent="fetchEvents()">Buscar2</button>
             <!--<div v-for="(value, key) in course">
                 <div v-for="(value) in course[key]">
                      {{ value['code_course']}} - {{value['course']}}
                 </div>
                 <!--{{ key }}: {{ value['code_course']}}-->
         <!---</div>-->
+        <br/>
+        <!--<p>{{prela.code_course}} - {{prela.course}}->
+        {{ prela.course_prelacion[0].course }}</p>-->
     </div>
 </template>
 
 <script>
     export default {
         name: "PrelacionCourse",
+        props:['prela'],
         data() {
             return {
 
@@ -104,7 +110,8 @@
                     course:''
                 }],
                 coursecompelte:[],
-                jose:[{}]
+                jose:[{}],
+                events:[]
             }
         },
         methods: {
@@ -143,9 +150,57 @@
                         this.errors.push(e)
                 })
             },
+            buscar(){
+                //this.editing=true;
+                this.course_in.code = this.prela.course_prelacion[0].code_course;
+                //let self = this;
+                //id=this.course_in.code;
+                    axios({
+                        method: 'POST',
+                        url: 'cursos/registrar-prelacion',
+                        data: {
+                            id: this.course_in.code,
+                        },
+
+                    }).then((response) => {
+                        //this.listarNO();
+                        alert(response);
+                        //do somethig to call method listarSi() on Amigos component
+
+                    }).catch((error) => {
+                        console.log(error);
+                    });
+                /*Event.$on('buscar', function (code_course) {
+
+                    this.buscar(code_course);
+                    alert(code_course);
+                });*/
+                //alert('hola '+ this.course_in.code);
+            },
+            fetchEvents : function(){
+                let self = this;
+                /*axios.get('cursos/registrar-prelacion')
+                    .then(function (id) {
+                        Vue.set(self , 'buscar', prelacion.data.data);
+                    })
+                    .catch(function (id) {
+                        alert('error');
+                    });*/
+                axios.post('/cursos/registrar-prelacion',self.course_in.code).then(function(id){
+                    alert(id);
+                    self.events = id.data;
+                    console.log('datas: ',id);
+                    alert(self.events);
+                },function (error){
+                    console.log(error);
+                });
+            }
         },
+
         mounted() {
             this.getCursos();
+            this.buscar();
+            this.fetchEvents();
         },
     }
 </script>

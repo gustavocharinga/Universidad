@@ -14318,6 +14318,7 @@ Vue.component('register-course', __webpack_require__(63));
 
 Vue.component('pre-course', __webpack_require__(68));
 
+//Vue.http.headers.common['X-CSRF-TOKEN'] = $('meta[name="csrf-token"]').attr('content');
 var app = new Vue({
   el: '#app'
 });
@@ -49575,7 +49576,7 @@ exports = module.exports = __webpack_require__(3)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -49666,9 +49667,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: "PrelacionCourse",
+    props: ['prela'],
     data: function data() {
         return {
 
@@ -49692,7 +49699,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 course: ''
             }],
             coursecompelte: [],
-            jose: [{}]
+            jose: [{}],
+            events: []
         };
     },
 
@@ -49731,10 +49739,57 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 //this.courses.current_page.push(courses.current_page),
                 _this.errors.push(e);
             });
+        },
+        buscar: function buscar() {
+            //this.editing=true;
+            this.course_in.code = this.prela.course_prelacion[0].code_course;
+            //let self = this;
+            //id=this.course_in.code;
+            axios({
+                method: 'POST',
+                url: 'cursos/registrar-prelacion',
+                data: {
+                    id: this.course_in.code
+                }
+
+            }).then(function (response) {
+                //this.listarNO();
+                alert(response);
+                //do somethig to call method listarSi() on Amigos component
+            }).catch(function (error) {
+                console.log(error);
+            });
+            /*Event.$on('buscar', function (code_course) {
+                 this.buscar(code_course);
+                alert(code_course);
+            });*/
+            //alert('hola '+ this.course_in.code);
+        },
+
+        fetchEvents: function fetchEvents() {
+            var self = this;
+            /*axios.get('cursos/registrar-prelacion')
+                .then(function (id) {
+                    Vue.set(self , 'buscar', prelacion.data.data);
+                })
+                .catch(function (id) {
+                    alert('error');
+                });*/
+            axios.post('/cursos/registrar-prelacion', self.course_in.code).then(function (id) {
+                alert(id);
+                self.events = id.data;
+                console.log('datas: ', id);
+                alert(self.events);
+            }, function (error) {
+                console.log(error);
+            });
         }
     },
+
     mounted: function mounted() {
         this.getCursos();
+        this.buscar();
+        this.fetchEvents();
     }
 });
 
@@ -49857,7 +49912,56 @@ var render = function() {
         )
       ]),
       _vm._v(" "),
-      _vm._v("\n    " + _vm._s(_vm.$cursoss) + "\n        ")
+      _c("input", {
+        attrs: { id: "id", name: "id" },
+        domProps: { value: _vm.course_in.code }
+      }),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-primary",
+          attrs: { name: "code_course" },
+          on: {
+            click: function($event) {
+              $event.preventDefault()
+              _vm.buscar()
+            }
+          },
+          model: {
+            value: _vm.course_in.code,
+            callback: function($$v) {
+              _vm.$set(_vm.course_in, "code", $$v)
+            },
+            expression: "course_in.code"
+          }
+        },
+        [_vm._v("Buscar")]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-primary",
+          attrs: { name: "code_course" },
+          on: {
+            click: function($event) {
+              $event.preventDefault()
+              _vm.fetchEvents()
+            }
+          },
+          model: {
+            value: _vm.course_in.code,
+            callback: function($$v) {
+              _vm.$set(_vm.course_in, "code", $$v)
+            },
+            expression: "course_in.code"
+          }
+        },
+        [_vm._v("Buscar2")]
+      ),
+      _vm._v(" "),
+      _c("br")
     ]
   )
 }

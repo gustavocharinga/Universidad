@@ -45,6 +45,7 @@ class HomeController extends Controller
         return response()->json([
             'prelacion'=> $resultado
         ],200);
+        //return compact('resultado');
     }
 
     public function registerPrelation(){
@@ -52,7 +53,6 @@ class HomeController extends Controller
         $cursoss = cursos::find('II0324V1');
         //$cursoss->coursePrelacion();
         //if(Auth::user()->hasRole('Administrador')){
-        $page='II0324V1';
         //var_dump($cursoss->coursePrelacion);
         /*foreach ($cursoss as $cursoss->coursePrelacion) {
              echo $cursoss->code_course_in;
