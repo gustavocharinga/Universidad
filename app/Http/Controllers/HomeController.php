@@ -40,12 +40,13 @@ class HomeController extends Controller
         return view('cursos.create');
     }
 
-    public function buscar($id){
+    public function buscar(Request $request,$id){
+        $id=$request['id'];
         $resultado= cursos::findOrFail($id)->coursePrelacion;
-        return response()->json([
+        /*return response()->json([
             'prelacion'=> $resultado
-        ],200);
-        //return compact('resultado');
+        ],200);*/
+        return compact('resultado');
     }
 
     public function registerPrelation(){

@@ -26,7 +26,7 @@ Route::get('/cursos/registrar','HomeController@createCurso')->name('cursos.crear
 
 Route::get('/cursos/registrar-prelacion','HomeController@registerPrelation')->name('cursos.crear.prelacion');
 
-Route::post('/cursos/registrar-prelacion','HomeController@buscar')->name('buscar-prelacion');
+Route::post('/cursos/registrar-prelacion/{id}','HomeController@buscar')->name('buscar-prelacion');
 
 Route::get('/home', 'HomeController@index')->name('home');
 

@@ -48289,9 +48289,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 to: 0,
                 current_page: 1
             },
-            prelacion: {
-                code_course: ''
-            }
+            prelacion: {},
+            errors: '',
+            error: [],
+            find: ''
         };
     },
 
@@ -48306,20 +48307,31 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 //this.course = response.data.cursos.data;
                 _this.courses = response.data.cursos;
             }).catch(function (e) {
-                _this.courses.current_page.push(courses.current_page), _this.errors.push(e);
+                _this.courses.current_page.push(courses.current_page);
+                _this.errors.push(e);
             });
         },
-        find_pre: function find_pre(id) {
-            axios.post('cursos').then(function (result) {
-                console.log('load: ', result);
-            }).catch(function (err) {
-                console.log(err);
+        find_pre: function find_pre(courses) {
+            var vm = this;
+            //Vue.set(this, 'courses',id );
+            alert(courses);
+            console.log('probando: ', courses);
+            //alert(this.courses.code_course);
+            //alert($("td[name=code]").val());
+            axios.post('/cursos/registrar-prelacion/:id', { id: courses }).then(function (response) {
+                alert(response.data.resultado[0].pivot.code_course_in);
+                vm.prelacion = response.data.resultado[0];
+                console.log('dataPrimordial: ', response.data.resultado);
+            }).catch(function (p) {
+                //this.courses.current_page.push(courses.current_page),
+                alert(p);
+                vm.error.push(p);
             });
         }
     },
     mounted: function mounted() {
         this.getCursos();
-        this.find_pre(id);
+        this.find_pre();
     }
 });
 
@@ -48821,34 +48833,38 @@ var render = function() {
       _c(
         "tbody",
         _vm._l(_vm.courses.data, function(courses) {
-          return _c(
-            "tr",
-            {
-              key: courses.id,
-              on: {
-                load: function($event) {
-                  _vm.find_pre(courses.code_course)
+          return _c("tr", { key: courses.id }, [
+            _c(
+              "td",
+              {
+                staticClass: "heading",
+                attrs: { name: "code", align: "center" }
+              },
+              [_vm._v(_vm._s(courses.code_course))]
+            ),
+            _vm._v(" "),
+            _c("td", { staticClass: "heading", attrs: { name: "course" } }, [
+              _vm._v(" " + _vm._s(courses.course))
+            ]),
+            _vm._v(" "),
+            _c("td", { staticClass: "heading", attrs: { name: "creditos" } }, [
+              _vm._v(_vm._s(courses.creditos))
+            ]),
+            _vm._v(" "),
+            _c(
+              "td",
+              {
+                staticClass: "heading",
+                attrs: { name: "materia prelante" },
+                on: {
+                  load: function($event) {
+                    _vm.find_pre(courses)
+                  }
                 }
-              }
-            },
-            [
-              _c("td", { staticClass: "heading", attrs: { align: "center" } }, [
-                _vm._v(_vm._s(courses.code_course))
-              ]),
-              _vm._v(" "),
-              _c("td", { staticClass: "heading" }, [
-                _vm._v(_vm._s(courses.course))
-              ]),
-              _vm._v(" "),
-              _c("td", { staticClass: "heading" }, [
-                _vm._v(_vm._s(courses.creditos))
-              ]),
-              _vm._v(" "),
-              _c("td", { staticClass: "heading" }, [
-                _vm._v("@" + _vm._s(_vm.prelacion))
-              ])
-            ]
-          )
+              },
+              [_vm._v(_vm._s(_vm.prelacion.code_course))]
+            )
+          ])
         })
       )
     ]),
@@ -48945,7 +48961,7 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Creditos")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Prelaacion")])
+        _c("th", [_vm._v("Prelacion")])
       ])
     ])
   }
@@ -49576,7 +49592,7 @@ exports = module.exports = __webpack_require__(3)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -49671,10 +49687,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: "PrelacionCourse",
+    /*http: {
+        root: '/root',
+        headers: {
+            'X-CSRF-TOKEN': document.querySelector('#token').getAttribute('value')
+        }
+    },*/
     props: ['prela'],
     data: function data() {
         return {
@@ -49741,24 +49762,33 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             });
         },
         buscar: function buscar() {
+            var _this2 = this;
+
             //this.editing=true;
             this.course_in.code = this.prela.course_prelacion[0].code_course;
             //let self = this;
             //id=this.course_in.code;
-            axios({
+            axios.post('/cursos/registrar-prelacion/:id', { id: "II0324V1" }).then(function (response) {
+                alert(response.data.resultado[0].pivot.code_course_in);
+                console.log('dataPrimordial: ', response.data.resultado);
+            }).catch(function (e) {
+                //this.courses.current_page.push(courses.current_page),
+                alert(e);
+                _this2.errors.push(e);
+            });
+            /*axios({
                 method: 'POST',
                 url: 'cursos/registrar-prelacion',
                 data: {
-                    id: this.course_in.code
-                }
-
-            }).then(function (response) {
+                    id: this.course_in.code,
+                },
+             }).then((response) => {
                 //this.listarNO();
                 alert(response);
                 //do somethig to call method listarSi() on Amigos component
-            }).catch(function (error) {
+             }).catch((error) => {
                 console.log(error);
-            });
+            });*/
             /*Event.$on('buscar', function (code_course) {
                  this.buscar(code_course);
                 alert(code_course);
@@ -49812,8 +49842,6 @@ var render = function() {
       }
     },
     [
-      _c("h2", [_vm._v("hola guapo")]),
-      _vm._v(" "),
       _vm._m(0),
       _vm._v(" "),
       _vm._m(1),

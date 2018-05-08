@@ -1,6 +1,5 @@
 <template >
     <div align="center" v-on:load="getCursos()">
-        <h2>hola guapo</h2>
         <!-- Example single danger button -->
         <div class="btn-group">
             <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
@@ -86,6 +85,12 @@
 <script>
     export default {
         name: "PrelacionCourse",
+        /*http: {
+            root: '/root',
+            headers: {
+                'X-CSRF-TOKEN': document.querySelector('#token').getAttribute('value')
+            }
+        },*/
         props:['prela'],
         data() {
             return {
@@ -155,7 +160,17 @@
                 this.course_in.code = this.prela.course_prelacion[0].code_course;
                 //let self = this;
                 //id=this.course_in.code;
-                    axios({
+                axios.post('/cursos/registrar-prelacion/:id',{id: "II0324V1"} )
+                    .then(response => {
+                        alert(response.data.resultado[0].pivot.code_course_in);
+                        console.log('dataPrimordial: ',response.data.resultado);
+                    })
+                    .catch(e => {
+                    //this.courses.current_page.push(courses.current_page),
+                        alert(e);
+                    this.errors.push(e)
+                })
+                    /*axios({
                         method: 'POST',
                         url: 'cursos/registrar-prelacion',
                         data: {
@@ -169,7 +184,7 @@
 
                     }).catch((error) => {
                         console.log(error);
-                    });
+                    });*/
                 /*Event.$on('buscar', function (code_course) {
 
                     this.buscar(code_course);
