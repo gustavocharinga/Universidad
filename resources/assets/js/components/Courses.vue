@@ -12,13 +12,24 @@
             </thead>
             <tbody>
             <tr v-for="courses in courses.data" :key="courses.id">
-                <td class="heading" name="code" align="center">{{courses.code_course}}</td>
+                <td class="heading" name="code" align="center" v-on:load="findPre(this)">{{courses.code_course}}</td>
                 <td class="heading" name="course"> {{courses.course}}</td>
                 <td class="heading" name="creditos">{{courses.creditos}}</td>
-                <td class="heading" name="materia prelante" v-on:load="find_pre(courses)">{{prelacion.code_course}}</td>
+                <td class="heading" v-if="active==1"></td>
+                <td class="heading" v-for="pre in prelacion" v-if="active==0" v-show="courses.code_course==pre.pivot.code_course_in">
+                    {{pre.code_course}}
+                </td>
+
+
+
             </tr>
             </tbody>
         </table>
+        <!--<div>
+            <p v-for="pre in prelacion">
+                {{pre.pivot.code_course_in}}
+            </p>
+        </div>-->
         <div align="center">
             <ul class="pagination">
                 <li v-if="courses.current_page > 1">
@@ -51,6 +62,7 @@
             VPaginator: VuePaginator,
             VuePagination
         },
+        props: ['id'],
         data() {
             return {
                 courses: {
@@ -60,38 +72,60 @@
                     to: 0,
                     current_page: 1
                 },
-                prelacion: {},
-                errors:'',
-                error:[],
-                find:'',
+                prelacion: [],
+                errors: '',
+                error: [],
+                find: '',
+                //id:'hola'
+                active:1
             }
         },
         methods: {
             getCursos(page) {
+                let vm = this;
                 axios.get('http://localhost:8000/api/cursos?page=' + page).then(response => {
                     console.log('data: ', response.data.cursos.data);
 
                     console.log('page: ', response.data);
                     //this.course = response.data.cursos.data;
                     this.courses = response.data.cursos;
+                    //console.log(response.data.cursos.data[0].code_course);
+                    response.data.cursos.data.forEach(function (element) {
+                        console.log(element.code_course);
+                        axios.post('/cursos/registrar-prelacion/:id', {id: element.code_course})
+                            .then(response => {
+                                //alert(response.data.resultado[0].pivot.code_course_in);
 
+                                response.data.resultado.forEach(function (cursos) {
+                                    vm.prelacion.push(cursos);
+                                    console.log(cursos.code_course);
+                                    vm.active=0;
+                                });
+                                //console.log('dataPrimordial: ', response.data.resultado[0]);
+                            })
+                    });
+                    vm.active=1;
+
+                    //alert(response.data.cursos.data.length);
                 }).catch(e => {
                     this.courses.current_page.push(courses.current_page);
-                        this.errors.push(e)
+                    this.errors.push(e)
                 })
             },
-            find_pre(courses) {
+            findPre: function (id) {
                 let vm = this;
                 //Vue.set(this, 'courses',id );
-                alert(courses);
-                console.log('probando: ',courses);
+                alert(id);
+                console.log('probando: ', id);
                 //alert(this.courses.code_course);
                 //alert($("td[name=code]").val());
-                axios.post('/cursos/registrar-prelacion/:id',{id: courses} )
+                //alert(this.courses.data);
+                //console.log('ni idea: ',this.courses.data);
+                axios.post('/cursos/registrar-prelacion/:id', id)
                     .then(response => {
                         alert(response.data.resultado[0].pivot.code_course_in);
-                        vm.prelacion=response.data.resultado[0];
-                        console.log('dataPrimordial: ',response.data.resultado);
+                        vm.prelacion = response.data.resultado[0];
+                        //console.log('dataPrimordial: ', response.data.resultado);
                     })
                     .catch(p => {
                         //this.courses.current_page.push(courses.current_page),
@@ -99,10 +133,18 @@
                         vm.error.push(p)
                     });
             },
+            cambio(){
+                vm.active=1;
+
+            }
+        },
+        created() {
+            this.findPre();
+            this.cambio;
         },
         mounted() {
             this.getCursos();
-            this.find_pre();
+
         },
     }
 </script>
