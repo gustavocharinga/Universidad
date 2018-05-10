@@ -43,6 +43,11 @@ class HomeController extends Controller
     public function buscar(Request $request,$id){
         $id=$request['id'];
         $resultado= cursos::findOrFail($id)->coursePrelacion;
+        //var_dump($resultado);
+        if (@empty($resultado)){
+            $resultado=null;
+            return compact('resultado');
+        };
         /*return response()->json([
             'prelacion'=> $resultado
         ],200);*/

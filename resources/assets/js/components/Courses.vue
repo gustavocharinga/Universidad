@@ -12,19 +12,21 @@
             </thead>
             <tbody>
             <tr v-for="courses in courses.data" :key="courses.id">
-                <td class="heading" name="code" align="center" v-on:load="findPre(this)">{{courses.code_course}}</td>
+                <td class="heading" id="code" v-model="probando" name="code" align="center" >{{courses.code_course}}</td>
                 <td class="heading" name="course"> {{courses.course}}</td>
                 <td class="heading" name="creditos">{{courses.creditos}}</td>
-                <td class="heading" v-if="active==1"></td>
+                <td class="heading" v-on:change.stop="findPre(courses.code_course)"></td>
+                <!--<td class="heading" v-if="active==1"></td>
                 <td class="heading" v-for="pre in prelacion" v-if="active==0" v-show="courses.code_course==pre.pivot.code_course_in">
                     {{pre.code_course}}
-                </td>
+                </td>-->
 
 
 
             </tr>
             </tbody>
         </table>
+        {{probando}}
         <!--<div>
             <p v-for="pre in prelacion">
                 {{pre.pivot.code_course_in}}
@@ -76,8 +78,10 @@
                 errors: '',
                 error: [],
                 find: '',
-                //id:'hola'
-                active:1
+                //id:'hola',
+                probando: [],
+                active:1,
+                //arr: [{id: ''}]
             }
         },
         methods: {
@@ -88,9 +92,9 @@
 
                     console.log('page: ', response.data);
                     //this.course = response.data.cursos.data;
-                    this.courses = response.data.cursos;
+                    vm.courses = response.data.cursos;
                     //console.log(response.data.cursos.data[0].code_course);
-                    response.data.cursos.data.forEach(function (element) {
+  /*                  response.data.cursos.data.forEach(function (element) {
                         console.log(element.code_course);
                         axios.post('/cursos/registrar-prelacion/:id', {id: element.code_course})
                             .then(response => {
@@ -105,26 +109,31 @@
                             })
                     });
                     vm.active=1;
-
+*/
                     //alert(response.data.cursos.data.length);
                 }).catch(e => {
                     this.courses.current_page.push(courses.current_page);
                     this.errors.push(e)
                 })
             },
-            findPre: function (id) {
+            findPre: function (code_course) {
                 let vm = this;
+                console.log('aaa: ',this.probando);
+                //vm.probando=document.querySelector('#code');
+                //alert(this.probando);
                 //Vue.set(this, 'courses',id );
-                alert(id);
-                console.log('probando: ', id);
+                alert(code_course);
+                console.log('probando: ', code_course);
                 //alert(this.courses.code_course);
                 //alert($("td[name=code]").val());
                 //alert(this.courses.data);
                 //console.log('ni idea: ',this.courses.data);
-                axios.post('/cursos/registrar-prelacion/:id', id)
+                axios.post('/cursos/registrar-prelacion/:id', {id:'II0324V1'})
                     .then(response => {
-                        alert(response.data.resultado[0].pivot.code_course_in);
-                        vm.prelacion = response.data.resultado[0];
+                        //alert(response.data.resultado[0].pivot.code_course_in);
+                        alert(response.data.resultado[0].code_course);
+                        console.log(response.data);
+                        //vm.prelacion = response.data.resultado[0];
                         //console.log('dataPrimordial: ', response.data.resultado);
                     })
                     .catch(p => {
@@ -139,8 +148,13 @@
             }
         },
         created() {
+            //var code_course='hola';
+            //const het = document.getElementById('code');
+            //var code_course = het.querySelector('td[name=code]');
+            //const code_course  = signupForm.querySelector('input[name=name]');
+            //var tete = this.courses.code_course;
             this.findPre();
-            this.cambio;
+            this.cambio();
         },
         mounted() {
             this.getCursos();
