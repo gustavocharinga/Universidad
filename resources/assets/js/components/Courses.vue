@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <div class="col-md-1"></div>
-        <table class="table table-striped">
+        <table class="table table-striped" >
             <thead>
             <tr>
                 <th>Codigo Curso</th>
@@ -11,22 +11,30 @@
             </tr>
             </thead>
             <tbody>
-            <tr v-for="courses in courses.data" :key="courses.id">
-                <td class="heading" id="code" v-model="probando" name="code" align="center" >{{courses.code_course}}</td>
+            <tr v-for="courses in courses.data" :key="courses.id" >
+                <td class="heading" id="code" name="code" align="center" >{{courses.code_course}}</td>
                 <td class="heading" name="course"> {{courses.course}}</td>
                 <td class="heading" name="creditos">{{courses.creditos}}</td>
-                <td class="heading" v-on:change.stop="findPre(courses.code_course)"></td>
+                <td class="heading"  v-model="find=courses.code_course" v-bind:aria-selected="key" @dblclick="findPre(find)" >{{prelacion.code_course_in}}</td>
                 <!--<td class="heading" v-if="active==1"></td>
                 <td class="heading" v-for="pre in prelacion" v-if="active==0" v-show="courses.code_course==pre.pivot.code_course_in">
                     {{pre.code_course}}
-                </td>-->
+                </td>:selected="find=courses.code_course"-->
 
 
 
             </tr>
             </tbody>
         </table>
+        {{find}}
         {{probando}}
+
+        {{find}}
+        <!--<div>
+            <p v-for="a in find" :key="a.id">
+                {{a}}
+            </p>
+        </div>-->
         <!--<div>
             <p v-for="pre in prelacion">
                 {{pre.pivot.code_course_in}}
@@ -64,7 +72,7 @@
             VPaginator: VuePaginator,
             VuePagination
         },
-        props: ['id'],
+        props: ['pepe'],
         data() {
             return {
                 courses: {
@@ -77,7 +85,9 @@
                 prelacion: [],
                 errors: '',
                 error: [],
-                find: '',
+                find: [
+                    {code_course:'',data:''}
+                ],
                 //id:'hola',
                 probando: [],
                 active:1,
@@ -85,6 +95,9 @@
             }
         },
         methods: {
+            addFind: function () {
+                this.find.push({ value: '' });
+            },
             getCursos(page) {
                 let vm = this;
                 axios.get('http://localhost:8000/api/cursos?page=' + page).then(response => {
@@ -117,23 +130,26 @@
                 })
             },
             findPre: function (code_course) {
+                //alert(code_course.target.value);
+                //$emit('findPre', this.courses);
                 let vm = this;
-                console.log('aaa: ',this.probando);
+                //console.log('aaa: ',this.probando);
                 //vm.probando=document.querySelector('#code');
-                //alert(this.probando);
+               // alert(this.probando);
                 //Vue.set(this, 'courses',id );
                 alert(code_course);
-                console.log('probando: ', code_course);
+                //console.log('probando: ', code_course);
                 //alert(this.courses.code_course);
                 //alert($("td[name=code]").val());
                 //alert(this.courses.data);
                 //console.log('ni idea: ',this.courses.data);
-                axios.post('/cursos/registrar-prelacion/:id', {id:'II0324V1'})
+                axios.post('/cursos/registrar-prelacion/:id', {id:code_course})
                     .then(response => {
                         //alert(response.data.resultado[0].pivot.code_course_in);
-                        alert(response.data.resultado[0].code_course);
+                        //alert(response.data.resultado[0].code_course);
                         console.log(response.data);
-                        //vm.prelacion = response.data.resultado[0];
+                        console.log(response.data.resultado);
+                        vm.prelacion = response.data.resultado[0];
                         //console.log('dataPrimordial: ', response.data.resultado);
                     })
                     .catch(p => {
@@ -143,11 +159,18 @@
                     });
             },
             cambio(){
+                let vm=this;
                 vm.active=1;
 
             }
         },
-        created() {
+        created(){
+            this.addFind();
+            //var code_course;
+            //var event = document.getElementById("code");
+            //var code_course = event.target.value;
+            //var code_course = document.target.value;
+
             //var code_course='hola';
             //const het = document.getElementById('code');
             //var code_course = het.querySelector('td[name=code]');

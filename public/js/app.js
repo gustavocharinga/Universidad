@@ -48283,6 +48283,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -48293,7 +48301,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         VPaginator: __WEBPACK_IMPORTED_MODULE_0__node_modules_vuejs_paginator___default.a,
         VuePagination: __WEBPACK_IMPORTED_MODULE_1__node_modules_vuejs_paginator_axios___default.a
     },
-    props: ['id'],
+    props: ['pepe'],
     data: function data() {
         return {
             courses: {
@@ -48306,7 +48314,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             prelacion: [],
             errors: '',
             error: [],
-            find: '',
+            find: [{ code_course: '', data: '' }],
             //id:'hola',
             probando: [],
             active: 1
@@ -48315,6 +48323,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
     methods: {
+        addFind: function addFind() {
+            this.find.push({ value: '' });
+        },
         getCursos: function getCursos(page) {
             var _this = this;
 
@@ -48349,22 +48360,25 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
 
         findPre: function findPre(code_course) {
+            //alert(code_course.target.value);
+            //$emit('findPre', this.courses);
             var vm = this;
-            console.log('aaa: ', this.probando);
+            //console.log('aaa: ',this.probando);
             //vm.probando=document.querySelector('#code');
-            //alert(this.probando);
+            // alert(this.probando);
             //Vue.set(this, 'courses',id );
             alert(code_course);
-            console.log('probando: ', code_course);
+            //console.log('probando: ', code_course);
             //alert(this.courses.code_course);
             //alert($("td[name=code]").val());
             //alert(this.courses.data);
             //console.log('ni idea: ',this.courses.data);
-            axios.post('/cursos/registrar-prelacion/:id', { id: 'II0324V1' }).then(function (response) {
+            axios.post('/cursos/registrar-prelacion/:id', { id: code_course }).then(function (response) {
                 //alert(response.data.resultado[0].pivot.code_course_in);
-                alert(response.data.resultado[0].code_course);
+                //alert(response.data.resultado[0].code_course);
                 console.log(response.data);
-                //vm.prelacion = response.data.resultado[0];
+                console.log(response.data.resultado);
+                vm.prelacion = response.data.resultado[0];
                 //console.log('dataPrimordial: ', response.data.resultado);
             }).catch(function (p) {
                 //this.courses.current_page.push(courses.current_page),
@@ -48373,10 +48387,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             });
         },
         cambio: function cambio() {
+            var vm = this;
             vm.active = 1;
         }
     },
     created: function created() {
+        this.addFind();
+        //var code_course;
+        //var event = document.getElementById("code");
+        //var code_course = event.target.value;
+        //var code_course = document.target.value;
+
         //var code_course='hola';
         //const het = document.getElementById('code');
         //var code_course = het.querySelector('td[name=code]');
@@ -48893,14 +48914,7 @@ var render = function() {
               "td",
               {
                 staticClass: "heading",
-                attrs: { id: "code", name: "code", align: "center" },
-                model: {
-                  value: _vm.probando,
-                  callback: function($$v) {
-                    _vm.probando = $$v
-                  },
-                  expression: "probando"
-                }
+                attrs: { id: "code", name: "code", align: "center" }
               },
               [_vm._v(_vm._s(courses.code_course))]
             ),
@@ -48913,20 +48927,39 @@ var render = function() {
               _vm._v(_vm._s(courses.creditos))
             ]),
             _vm._v(" "),
-            _c("td", {
-              staticClass: "heading",
-              on: {
-                change: function($event) {
-                  $event.stopPropagation()
-                  _vm.findPre(courses.code_course)
+            _c(
+              "td",
+              {
+                staticClass: "heading",
+                attrs: { "aria-selected": _vm.key },
+                on: {
+                  dblclick: function($event) {
+                    _vm.findPre(_vm.find)
+                  }
+                },
+                model: {
+                  value: (_vm.find = courses.code_course),
+                  callback: function($$v) {
+                    _vm.$set((_vm.find = courses), "code_course", $$v)
+                  },
+                  expression: "find=courses.code_course"
                 }
-              }
-            })
+              },
+              [_vm._v(_vm._s(_vm.prelacion.code_course_in))]
+            )
           ])
         })
       )
     ]),
-    _vm._v("\n    " + _vm._s(_vm.probando) + "\n    "),
+    _vm._v(
+      "\n    " +
+        _vm._s(_vm.find) +
+        "\n    " +
+        _vm._s(_vm.probando) +
+        "\n\n    " +
+        _vm._s(_vm.find) +
+        "\n    "
+    ),
     _vm._v(" "),
     _c("div", { attrs: { align: "center" } }, [
       _c(

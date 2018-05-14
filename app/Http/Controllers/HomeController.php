@@ -45,7 +45,8 @@ class HomeController extends Controller
         $resultado= cursos::findOrFail($id)->coursePrelacion;
         //var_dump($resultado);
         if (@empty($resultado)){
-            $resultado=null;
+            $resultado='no tiene';
+
             return compact('resultado');
         };
         /*return response()->json([
