@@ -48323,9 +48323,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
     methods: {
-        addFind: function addFind() {
+        /*addFind: function () {
             this.find.push({ value: '' });
-        },
+        },*/
         getCursos: function getCursos(page) {
             var _this = this;
 
@@ -48925,41 +48925,11 @@ var render = function() {
             _vm._v(" "),
             _c("td", { staticClass: "heading", attrs: { name: "creditos" } }, [
               _vm._v(_vm._s(courses.creditos))
-            ]),
-            _vm._v(" "),
-            _c(
-              "td",
-              {
-                staticClass: "heading",
-                attrs: { "aria-selected": _vm.key },
-                on: {
-                  dblclick: function($event) {
-                    _vm.findPre(_vm.find)
-                  }
-                },
-                model: {
-                  value: (_vm.find = courses.code_course),
-                  callback: function($$v) {
-                    _vm.$set((_vm.find = courses), "code_course", $$v)
-                  },
-                  expression: "find=courses.code_course"
-                }
-              },
-              [_vm._v(_vm._s(_vm.prelacion.code_course_in))]
-            )
+            ])
           ])
         })
       )
     ]),
-    _vm._v(
-      "\n    " +
-        _vm._s(_vm.find) +
-        "\n    " +
-        _vm._s(_vm.probando) +
-        "\n\n    " +
-        _vm._s(_vm.find) +
-        "\n    "
-    ),
     _vm._v(" "),
     _c("div", { attrs: { align: "center" } }, [
       _c(

@@ -15,7 +15,7 @@
                 <td class="heading" id="code" name="code" align="center" >{{courses.code_course}}</td>
                 <td class="heading" name="course"> {{courses.course}}</td>
                 <td class="heading" name="creditos">{{courses.creditos}}</td>
-                <td class="heading"  v-model="find=courses.code_course" v-bind:aria-selected="key" @dblclick="findPre(find)" >{{prelacion.code_course_in}}</td>
+                <!--<td class="heading"  v-model="find=courses.code_course" v-bind:aria-selected="key" @dblclick="findPre(find)" >{{prelacion.code_course_in}}</td>
                 <!--<td class="heading" v-if="active==1"></td>
                 <td class="heading" v-for="pre in prelacion" v-if="active==0" v-show="courses.code_course==pre.pivot.code_course_in">
                     {{pre.code_course}}
@@ -26,10 +26,10 @@
             </tr>
             </tbody>
         </table>
-        {{find}}
+        <!--{{find}}
         {{probando}}
 
-        {{find}}
+        {{find}}-->
         <!--<div>
             <p v-for="a in find" :key="a.id">
                 {{a}}
@@ -95,9 +95,9 @@
             }
         },
         methods: {
-            addFind: function () {
+            /*addFind: function () {
                 this.find.push({ value: '' });
-            },
+            },*/
             getCursos(page) {
                 let vm = this;
                 axios.get('http://localhost:8000/api/cursos?page=' + page).then(response => {

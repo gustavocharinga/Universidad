@@ -33,7 +33,9 @@ class HomeController extends Controller
     }
 
     public function indexcurso(){
-        return view('cursos.index');
+        $prela=cursos::all();
+
+        return view('cursos.index', ['prela' => $prela]);
     }
 
     public function createCurso(){
