@@ -15,31 +15,16 @@
                 <td class="heading" id="code" name="code" align="center" >{{courses.code_course}}</td>
                 <td class="heading" name="course"> {{courses.course}}</td>
                 <td class="heading" name="creditos">{{courses.creditos}}</td>
-                <!--<td class="heading"  v-model="find=courses.code_course" v-bind:aria-selected="key" @dblclick="findPre(find)" >{{prelacion.code_course_in}}</td>
-                <!--<td class="heading" v-if="active==1"></td>
-                <td class="heading" v-for="pre in prelacion" v-if="active==0" v-show="courses.code_course==pre.pivot.code_course_in">
-                    {{pre.code_course}}
-                </td>:selected="find=courses.code_course"-->
+                <div class="heading" name="prelacion" v-for="pre in prelacion">
+                    <h5 v-if="pre.pivot.code_course_in===courses.code_course">{{pre.course}}</h5>
 
-
+                </div>
 
             </tr>
+
             </tbody>
         </table>
-        <!--{{find}}
-        {{probando}}
 
-        {{find}}-->
-        <!--<div>
-            <p v-for="a in find" :key="a.id">
-                {{a}}
-            </p>
-        </div>-->
-        <!--<div>
-            <p v-for="pre in prelacion">
-                {{pre.pivot.code_course_in}}
-            </p>
-        </div>-->
         <div align="center">
             <ul class="pagination">
                 <li v-if="courses.current_page > 1">
@@ -48,7 +33,7 @@
                         <span aria-hidden="true">«</span>
                     </a>
                 </li>
-                <li v-for="page in courses.last_page" :class="{'active': page == courses.current_page}">
+                <li v-for="page in courses.last_page" :class="{'active': page === courses.current_page}">
                     <a href="javascript:void(0)" v-on:click.prevent="getCursos(page)">{{ page }}</a>
                 </li>
                 <li v-if="courses.current_page < courses.last_page">
@@ -64,7 +49,7 @@
 
 <script>
     import VuePaginator from '../../../../node_modules/vuejs-paginator';
-    import VuePagination from '../../../../node_modules/vuejs-paginator-axios';
+    //import VuePagination from '../../../../node_modules/vuejs-paginator-axios';
 
     export default {
         name: "courses",
@@ -72,7 +57,7 @@
             VPaginator: VuePaginator,
             VuePagination
         },
-        props: ['pepe'],
+        //props: ['pepe'],
         data() {
             return {
                 courses: {
@@ -94,35 +79,44 @@
                 //arr: [{id: ''}]
             }
         },
+
         methods: {
             /*addFind: function () {
                 this.find.push({ value: '' });
             },*/
             getCursos(page) {
+                let i;
                 let vm = this;
                 axios.get('http://localhost:8000/api/cursos?page=' + page).then(response => {
-                    console.log('data: ', response.data.cursos.data);
+                    //console.log('data: ', response.data.cursos.data);
 
-                    console.log('page: ', response.data);
+                    //console.log('page: ', response.data);
                     //this.course = response.data.cursos.data;
                     vm.courses = response.data.cursos;
-                    //console.log(response.data.cursos.data[0].code_course);
-  /*                  response.data.cursos.data.forEach(function (element) {
-                        console.log(element.code_course);
+                   //console.log(response.data.cursos.data[0].code_course);
+                    response.data.cursos.data.forEach(function (element) {
+                        //console.log(element.code_course);
                         axios.post('/cursos/registrar-prelacion/:id', {id: element.code_course})
                             .then(response => {
                                 //alert(response.data.resultado[0].pivot.code_course_in);
-
+                                i=0;
                                 response.data.resultado.forEach(function (cursos) {
-                                    vm.prelacion.push(cursos);
-                                    console.log(cursos.code_course);
+                                    if (vm.prelacion == null)
+                                        vm.prelacion.push(cursos);
+                                    else {
+                                        vm.prelacion.forEach(function (ver) {
+                                        if (ver.course === cursos.course)
+                                            i++;
+                                    });
+                                        if(i<1)
+                                            vm.prelacion.push(cursos);
+                                    }
                                     vm.active=0;
                                 });
-                                //console.log('dataPrimordial: ', response.data.resultado[0]);
                             })
                     });
                     vm.active=1;
-*/
+
                     //alert(response.data.cursos.data.length);
                 }).catch(e => {
                     this.courses.current_page.push(courses.current_page);
@@ -137,7 +131,7 @@
                 //vm.probando=document.querySelector('#code');
                // alert(this.probando);
                 //Vue.set(this, 'courses',id );
-                alert(code_course);
+                //alert(code_course);
                 //console.log('probando: ', code_course);
                 //alert(this.courses.code_course);
                 //alert($("td[name=code]").val());
@@ -147,14 +141,14 @@
                     .then(response => {
                         //alert(response.data.resultado[0].pivot.code_course_in);
                         //alert(response.data.resultado[0].code_course);
-                        console.log(response.data);
-                        console.log(response.data.resultado);
+                        //console.log(response.data);
+                        //console.log(response.data.resultado);
                         vm.prelacion = response.data.resultado[0];
                         //console.log('dataPrimordial: ', response.data.resultado);
                     })
                     .catch(p => {
                         //this.courses.current_page.push(courses.current_page),
-                        alert(p);
+                        //alert(p);
                         vm.error.push(p)
                     });
             },
@@ -165,7 +159,7 @@
             }
         },
         created(){
-            this.addFind();
+            //this.addFind();
             //var code_course;
             //var event = document.getElementById("code");
             //var code_course = event.target.value;

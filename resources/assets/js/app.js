@@ -6,9 +6,13 @@
  */
 
 require('./bootstrap');
-
+import VuePagination from 'vuejs-paginator-axios/dist/vuejs-paginator-axios';
+import axios from 'axios';
+//Vue.use(VuePagination);
 window.Vue = require('vue');
-
+//Vue.use('VuePagination');
+window.VuePagination = VuePagination;
+window.axios = axios;
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
