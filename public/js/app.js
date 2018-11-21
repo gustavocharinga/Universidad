@@ -48976,9 +48976,9 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
-    _c("div", { staticClass: "col-md-1" }),
+    _c("div", { staticClass: "col-md-1 col-sm-1 col-xl-1 col-lg-1" }),
     _vm._v(" "),
-    _c("table", { staticClass: "table table-striped" }, [
+    _c("table", { staticClass: "table table-striped col-md-10" }, [
       _vm._m(0),
       _vm._v(" "),
       _c(
@@ -48986,40 +48986,36 @@ var render = function() {
         _vm._l(_vm.courses.data, function(courses) {
           return _c(
             "tr",
-            { key: courses.id },
+            { key: courses.id, staticStyle: { color: "black" } },
             [
               _c(
                 "td",
-                {
-                  staticClass: "heading",
-                  attrs: { id: "code", name: "code", align: "center" }
-                },
-                [_vm._v(_vm._s(courses.code_course))]
+                { attrs: { id: "code", name: "code", align: "center" } },
+                [_c("dt", [_vm._v(_vm._s(courses.code_course))])]
               ),
               _vm._v(" "),
-              _c("td", { staticClass: "heading", attrs: { name: "course" } }, [
-                _vm._v(" " + _vm._s(courses.course))
+              _c("td", { attrs: { name: "course" } }, [
+                _c("dt", [_vm._v(" " + _vm._s(courses.course))])
+              ]),
+              _vm._v(" "),
+              _c("td", { attrs: { name: "creditos" } }, [
+                _c("dt", [_vm._v(_vm._s(courses.creditos))])
               ]),
               _vm._v(" "),
               _c(
                 "td",
-                { staticClass: "heading", attrs: { name: "creditos" } },
-                [_vm._v(_vm._s(courses.creditos))]
-              ),
-              _vm._v(" "),
-              _vm._l(_vm.prelacion, function(pre) {
-                return _c(
-                  "div",
-                  { staticClass: "heading", attrs: { name: "prelacion" } },
-                  [
+                { staticClass: "text-*-center" },
+                _vm._l(_vm.prelacion, function(pre) {
+                  return _c("div", { attrs: { name: "prelacion" } }, [
                     pre.pivot.code_course_in === courses.code_course
-                      ? _c("h5", [_vm._v(_vm._s(pre.course))])
+                      ? _c("h6", { staticClass: "text-capitalize" }, [
+                          _c("dt", [_vm._v(_vm._s(pre.course))])
+                        ])
                       : _vm._e()
-                  ]
-                )
-              })
-            ],
-            2
+                  ])
+                })
+              )
+            ]
           )
         })
       )

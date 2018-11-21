@@ -1,7 +1,7 @@
 <template>
     <div class="container">
-        <div class="col-md-1"></div>
-        <table class="table table-striped" >
+        <div class="col-md-1 col-sm-1 col-xl-1 col-lg-1"></div>
+        <table class="table table-striped col-md-10" >
             <thead>
             <tr>
                 <th>Codigo Curso</th>
@@ -11,14 +11,14 @@
             </tr>
             </thead>
             <tbody>
-            <tr v-for="courses in courses.data" :key="courses.id" >
-                <td class="heading" id="code" name="code" align="center" >{{courses.code_course}}</td>
-                <td class="heading" name="course"> {{courses.course}}</td>
-                <td class="heading" name="creditos">{{courses.creditos}}</td>
-                <div class="heading" name="prelacion" v-for="pre in prelacion">
-                    <h5 v-if="pre.pivot.code_course_in===courses.code_course">{{pre.course}}</h5>
+            <tr style="color: black" v-for="courses in courses.data" :key="courses.id" >
+                <td id="code" name="code" align="center" ><dt>{{courses.code_course}}</dt></td>
+                <td name="course"><dt> {{courses.course}}</dt></td>
+                <td name="creditos"><dt>{{courses.creditos}}</dt></td>
+                <td class="text-*-center"><div name="prelacion" v-for="pre in prelacion">
+                    <h6 class="text-capitalize" v-if="pre.pivot.code_course_in===courses.code_course"><dt>{{pre.course}}</dt></h6>
 
-                </div>
+                </div></td>
 
             </tr>
 

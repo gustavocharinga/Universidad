@@ -22,9 +22,9 @@ Auth::routes();
 
 Route::get('/cursos','HomeController@indexcurso')->name('cursos.index');
 
-Route::get('/cursos/registrar','HomeController@createCurso')->name('cursos.crear');
+//Route::get('/cursos/registrar','HomeController@createCurso')->name('cursos.crear');
 
-Route::get('/cursos/registrar-prelacion','HomeController@registerPrelation')->name('cursos.crear.prelacion');
+//Route::get('/cursos/registrar-prelacion','HomeController@registerPrelation')->name('cursos.crear.prelacion');
 
 Route::post('/cursos/registrar-prelacion/{id}','HomeController@buscar')->name('buscar-prelacion');
 

@@ -44,7 +44,7 @@ Licence URI: http://www.os-templates.com/template-terms
             <nav id="mainav" class="fl_right">
                 <ul class="clear">
 
-                    <li class="active"><a href="{{ route('home')}}">Home</a></li>
+                    <li class="active"><a href="{{ route('home')}}">Inicio</a></li>
                     @guest
                         <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
                         <li><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></li>
@@ -61,14 +61,15 @@ Licence URI: http://www.os-templates.com/template-terms
                         </a>
 
                         <ul>
+                            <li><a href="pages/full-width.html">Perfil</a></li>
                             <li><a href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                     @csrf
                                 </form>
                             </li>
-                            <!--<li><a href="pages/full-width.html">Full Width</a></li>
-                            <li><a href="pages/sidebar-left.html">Sidebar Left</a></li>
+
+                            <!--<li><a href="pages/sidebar-left.html">Sidebar Left</a></li>
                             <li><a href="pages/sidebar-right.html">Sidebar Right</a></li>
                             <li><a href="pages/basic-grid.html">Basic Grid</a></li>-->
                         </ul>
